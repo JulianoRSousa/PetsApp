@@ -1,7 +1,9 @@
-import React from "react";
-import { View, StyleSheet, StatusBar } from "react-native";
+/* eslint-disable prettier/prettier */
+import React, { useRef } from 'react';
+import { View, StyleSheet, StatusBar, TextInput } from 'react-native';
 import * as AppColors from '../../assets/Colors';
 import PetsButton from '../../components/Buttons';
+import PetsTextInput from '../../components/TextInput';
 
 import { useAuth } from "../../contexts/auth";
 
@@ -12,7 +14,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignIn: React.FC = (navigation) => {
+const SignIn: React.FC = () => {
+  const passwordRef = useRef<TextInput>()
   const { signIn } = useAuth();
 
   function handleSign() {
@@ -20,8 +23,10 @@ const SignIn: React.FC = (navigation) => {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent:'center', backgroundColor: AppColors.base, }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: AppColors.base, }}>
       <StatusBar backgroundColor={AppColors.base} />
+      <PetsTextInput title={'Nome de usuário'} secureTextEntry={false} />
+      <PetsTextInput ref={passwordRef} placeholder={'teste'} title={'Senha'} secureTextEntry={true} onSubmitEditing={() => handleSign()} />
       <PetsButton onPress={() => handleSign()} tittle={'Login'} color="blue" />
       <PetsButton onPress={() => console.log('Press create acc')} tittle={'Criar Conta'} color="light" />
     </View>
