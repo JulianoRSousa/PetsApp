@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, Dimensions } from "react-native";
 import * as AppColors from '../assets/Colors';
 
 interface Props {
-    readonly color: 'blue'| 'light'| 'orange';
+    readonly color: 'blue' | 'light' | 'orange';
     readonly tittle: string;
     onPress: any;
 }
+const width = Dimensions.get("window").width * 0.45;
+const height = Dimensions.get("window").height * 0.07;
+
 
 const PetsButton: React.FC<Props> = ({ onPress, color, tittle }) => {
+
 
     const [styleSelected, setStyleSelected] = useState(styleLight);
 
@@ -21,7 +25,7 @@ const PetsButton: React.FC<Props> = ({ onPress, color, tittle }) => {
             setStyleSelected(styleBlue)
         } else if (String(color) == 'light') {
             setStyleSelected(styleLight)
-        } else if(String(color) == 'orange'){
+        } else if (String(color) == 'orange') {
             setStyleSelected(styleOrange)
         }
     }
@@ -48,8 +52,8 @@ const styleBlue = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkBlue,
@@ -71,8 +75,8 @@ const styleLight = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkLight,
@@ -94,8 +98,8 @@ const styleOrange = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkBase,

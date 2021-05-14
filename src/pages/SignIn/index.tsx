@@ -26,7 +26,7 @@ const SignIn: React.FC = () => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: AppColors.base, }}>
       <StatusBar backgroundColor={AppColors.base} />
       <PetsTextInput title={'Nome de usuário'} secureTextEntry={false} />
-      <PetsTextInput ref={passwordRef} placeholder={'teste'} title={'Senha'} secureTextEntry={true} onSubmitEditing={() => handleSign()} />
+      <PetsTextInput title={'Senha'} secureTextEntry={true} onSubmitEditing={() => handleSign()} />
       <PetsButton onPress={() => handleSign()} tittle={'Login'} color="blue" />
       <PetsButton onPress={() => console.log('Press create acc')} tittle={'Criar Conta'} color="light" />
     </View>

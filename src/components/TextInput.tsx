@@ -11,7 +11,6 @@ import * as AppColors from '../assets/Colors';
 
 interface CustomInput {
     title?: string,
-    ref?: MutableRefObject<any> | null;
     onChangeText?: (text: string) => void;
     placeholder?: string;
     placeholderTextColor?: string;
@@ -28,12 +27,11 @@ interface CustomInput {
     secureTextEntry?: boolean;
 }
 
-const PetsTextInput: React.FC<CustomInput> = ({ title, ref, onChangeText, placeholder, placeholderTextColor,
+const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder, placeholderTextColor,
     editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing, secureTextEntry }) => {
 
     const width = Dimensions.get("window").width * 0.8;
     const height = Dimensions.get("window").height * 0.07;
-   const internalRef = ref
     return (
         <View
             style={{
@@ -60,7 +58,6 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, ref, onChangeText, placeh
                 {title}
             </Text>
             <TextInput
-                ref={internalRef}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
