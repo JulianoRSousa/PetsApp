@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dashboard: React.FC = () => {
+const HomeScreen: React.FC = () => {
   const navigation = useNavigation();
   const { user, signOut } = useAuth();
 
@@ -27,4 +27,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default HomeScreen;
