@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useAuth } from "../../contexts/auth";
 import { useNavigation } from '@react-navigation/native';
+import HeaderInfo from '../../components/HeaderInfo';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,8 +22,7 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text>{user?.name}</Text>
-      <Button title="Sign Out" onPress={() => handleSignOut()} />
+      <HeaderInfo/>
     </View>
   );
 };
