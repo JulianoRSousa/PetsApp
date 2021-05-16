@@ -10,23 +10,49 @@ const height = Dimensions.get("window").height * 0.40;
 
 const HeaderInfo: React.FC = () => {
 
-    const { user, signOut } = useAuth();
+    const [followersCount, setFollowersCount] = useState('');
+    const [petsCount, setPetsCount] = useState('0');
+    const [postsCount, setPostsCount] = useState('0');
+    const { user } = useAuth();
+
+    useEffect(() => {
+        followers();
+        posts();
+        pets();
+        console.log('profile: ',user?.email)
+    }, [])
+
+    function followers() {
+        user?.followersCount == 1 ? setFollowersCount('1 Seguidor') : setFollowersCount(user?.followersCount + ' Seguidores')
+    }
+    function posts() {
+        user?.postsCount == 1 ? setPostsCount('1 Post') : setPostsCount(user?.postsCount + ' Post')
+    }
+
+    function pets() {
+        user?.petsCount == 1 ? setPetsCount('1 Pet') : setPetsCount(user?.petsCount + ' Pets')
+    }
 
     return (
         <View style={style.container}>
             <View style={style.imageContainer}>
                 <View style={style.imageShadow}>
                     <View style={style.image}>
-                        <Image source={{}}></Image>
+                        <Image
+                            style={style.stretch}
+                            source={{
+                                uri: user?.profileUrl,
+                            }}
+                        />
                     </View>
                 </View>
 
             </View>
             <View style={style.infoContainer}>
                 <Text style={{ fontSize: 24, color: 'white' }}>{user?.name}</Text>
-                <Text style={style.text}>{user?.followersCount}</Text>
-                <Text style={style.text}>{user?.postsCount}</Text>
-                <Text style={style.text}>{user?.petsCount}</Text>
+                <Text style={style.text}>{followersCount}</Text>
+                <Text style={style.text}>{postsCount}</Text>
+                <Text style={style.text}>{petsCount}</Text>
             </View>
         </View>
     )
@@ -73,5 +99,11 @@ const style = StyleSheet.create({
         fontFamily: 'Chewy',
         fontSize: 16,
         color: AppColors.white
-    }
+    },
+    stretch: {
+        height:'100%',
+        width:'100%',
+        borderRadius:30,
+        resizeMode: 'stretch',
+      },
 })

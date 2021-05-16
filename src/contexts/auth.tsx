@@ -5,7 +5,11 @@ import api from '../services/api';
 
 interface User {
   name: string;
-  email: string;
+  followersCount?: number;
+  postsCount?: number;
+  petsCount?: number;
+  profileUrl?: string,
+  email?: string;
 }
 
 interface AuthContextData {
