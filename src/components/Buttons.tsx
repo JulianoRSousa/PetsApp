@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, Dimensions } from "react-native";
 import * as AppColors from '../assets/Colors';
 
 interface Props {
@@ -7,6 +7,9 @@ interface Props {
     readonly tittle: string;
     onPress: any;
 }
+
+const width = Dimensions.get("window").width * 0.45;
+const height = Dimensions.get("window").height * 0.07;
 
 const PetsButton: React.FC<Props> = ({ onPress, color, tittle }) => {
 
@@ -48,8 +51,8 @@ const styleBlue = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkBlue,
@@ -71,8 +74,8 @@ const styleLight = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkLight,
@@ -94,8 +97,8 @@ const styleOrange = StyleSheet.create({
         justifyContent: 'center'
     },
     shadowButton: {
-        height: '7%',
-        width: '45%',
+        height: height,
+        width: width,
         borderRadius: 30,
         marginBottom: 10,
         backgroundColor: AppColors.darkBase,
