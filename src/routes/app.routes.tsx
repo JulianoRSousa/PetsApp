@@ -1,14 +1,16 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Dashboard from '../pages/Dashboard';
+import Profile from '../pages/Profile';
 
-const AppStack = createStackNavigator();
+const AppTab = createBottomTabNavigator();
 
 const AppRoutes: React.FC = () => (
-  <AppStack.Navigator>
-    <AppStack.Screen name="Dashboard" component={Dashboard} />
-  </AppStack.Navigator>
+  <AppTab.Navigator>
+    <AppTab.Screen name="Dashboard" component={Dashboard} />
+    <AppTab.Screen name="Amigos" component={Profile} />
+  </AppTab.Navigator>
 );
 
 export default AppRoutes;

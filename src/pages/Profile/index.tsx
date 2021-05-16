@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dashboard: React.FC = () => {
+const Profile: React.FC = () => {
   const navigation = useNavigation();
   const { user, signOut } = useAuth();
 
@@ -22,9 +22,9 @@ const Dashboard: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>{user?.name}</Text>
-      <Button title="Sign Out" onPress={() => handleSignOut()} />
+      <Button title="Sign Out" onPress={() =>{}} />
     </View>
   );
 };
 
-export default Dashboard;
+export default Profile;

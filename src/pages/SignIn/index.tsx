@@ -4,6 +4,7 @@ import { View, StyleSheet, StatusBar, TextInput } from 'react-native';
 import * as AppColors from '../../assets/Colors';
 import PetsButton from '../../components/Buttons';
 import PetsTextInput from '../../components/TextInput';
+import { useNavigation } from '@react-navigation/native';
 
 import { useAuth } from "../../contexts/auth";
 
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 const SignIn: React.FC = () => {
-  const passwordRef = useRef<TextInput>()
+  const navigation = useNavigation();
   const { signIn } = useAuth();
 
   function handleSign() {
@@ -26,9 +27,9 @@ const SignIn: React.FC = () => {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: AppColors.base, }}>
       <StatusBar backgroundColor={AppColors.base} />
       <PetsTextInput title={'Nome de usuário'} secureTextEntry={false} />
-      <PetsTextInput ref={passwordRef} placeholder={'teste'} title={'Senha'} secureTextEntry={true} onSubmitEditing={() => handleSign()} />
+      <PetsTextInput title={'Senha'} secureTextEntry={true} onSubmitEditing={() => handleSign()} />
       <PetsButton onPress={() => handleSign()} tittle={'Login'} color="blue" />
-      <PetsButton onPress={() => console.log('Press create acc')} tittle={'Criar Conta'} color="light" />
+      <PetsButton onPress={() => navigation.navigate('CreateAccount')} tittle={'Criar Conta'} color="light" />
     </View>
   );
 };
