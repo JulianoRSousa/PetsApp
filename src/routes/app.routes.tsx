@@ -10,7 +10,7 @@ const AppTab = createBottomTabNavigator();
 
 const AppRoutes: React.FC = () => (
   <AppTab.Navigator>
-    <AppTab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarBadge: 'oloko', tabBarLabel: 'Inicio', }} />
+    <AppTab.Screen name="HomeScreen" component={HomeScreen} options={ { tabBarLabel: 'Inicio', tabBarVisible:true }} />
     <AppTab.Screen name="Friends" component={Friends} options={{ title: 'Amigos' }} />
     <AppTab.Screen name="Adoption" component={Adoption} options={{ title: 'Adoção' }} />
     <AppTab.Screen name="Profile" component={Profile} options={{ title: 'Meu Perfil' }} />

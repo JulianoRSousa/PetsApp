@@ -8,7 +8,7 @@ interface User {
   followersCount?: number;
   postsCount?: number;
   petsCount?: number;
-  profileUrl?: string,
+  profileUrl?: string;
   email?: string;
 }
 
@@ -25,6 +25,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     async function loadStorageData() {
@@ -40,7 +41,7 @@ const AuthProvider: React.FC = ({children}) => {
     }
 
     loadStorageData();
-  });
+  },[]);
 
   async function signIn() {
     const response = await auth.signIn();

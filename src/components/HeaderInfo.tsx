@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import {View, Text, StyleSheet, Dimensions, Image, StatusBar } from "react-native";
 import * as AppColors from '../assets/Colors';
 import { useAuth } from "../contexts/auth";
 
@@ -19,7 +19,6 @@ const HeaderInfo: React.FC = () => {
         followers();
         posts();
         pets();
-        console.log('profile: ',user?.email)
     }, [])
 
     function followers() {
@@ -35,11 +34,12 @@ const HeaderInfo: React.FC = () => {
 
     return (
         <View style={style.container}>
+            <StatusBar backgroundColor={AppColors.base} />
             <View style={style.imageContainer}>
                 <View style={style.imageShadow}>
                     <View style={style.image}>
                         <Image
-                            style={style.stretch}
+                            style={style.image}
                             source={{
                                 uri: user?.profileUrl,
                             }}
@@ -62,6 +62,8 @@ export default HeaderInfo;
 
 const style = StyleSheet.create({
     container: {
+        alignSelf:'flex-start',
+        top:0,
         backgroundColor: AppColors.base,
         height: height,
         width: width,
@@ -86,9 +88,10 @@ const style = StyleSheet.create({
         backgroundColor: AppColors.darkBase,
     },
     image: {
-        height: '97%',
-        width: '97%',
+        height: '98%',
+        width: '98%',
         borderRadius: 30,
+        resizeMode: 'stretch',
     },
     infoContainer: {
         flex: 2,
@@ -100,10 +103,4 @@ const style = StyleSheet.create({
         fontSize: 16,
         color: AppColors.white
     },
-    stretch: {
-        height:'100%',
-        width:'100%',
-        borderRadius:30,
-        resizeMode: 'stretch',
-      },
 })
