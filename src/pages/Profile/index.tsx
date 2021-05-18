@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useAuth } from "../../contexts/auth";
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,7 +11,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dashboard: React.FC = () => {
+const Profile: React.FC = () => {
+  const navigation = useNavigation();
   const { user, signOut } = useAuth();
 
   function handleSignOut() {
@@ -20,9 +22,9 @@ const Dashboard: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>{user?.name}</Text>
-      <Button title="Sign Out" onPress={handleSignOut} />
+      <Button title="Sign Out" onPress={() =>{}} />
     </View>
   );
 };
 
-export default Dashboard;
+export default Profile;

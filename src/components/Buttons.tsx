@@ -10,7 +10,6 @@ interface Props {
 const width = Dimensions.get("window").width * 0.45;
 const height = Dimensions.get("window").height * 0.07;
 
-
 const PetsButton: React.FC<Props> = ({ onPress, color, tittle }) => {
 
 

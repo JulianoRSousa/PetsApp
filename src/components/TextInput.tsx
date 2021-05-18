@@ -1,11 +1,12 @@
-import React, {MutableRefObject, useRef
+import React, {
+    MutableRefObject
 } from "react";
 import {
     View,
     Text,
     TextInput,
     Dimensions,
-    TextInputComponent
+    KeyboardType
 } from "react-native";
 import * as AppColors from '../assets/Colors';
 
@@ -25,13 +26,18 @@ interface CustomInput {
     value?: string;
     onSubmitEditing?: () => void;
     secureTextEntry?: boolean;
+    keyboardType?: KeyboardType;
+    defaultValue?: string;
+    autoCompleteType?: "cc-csc" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-number" | "email" | "name" | "password" | "postal-code" | "street-address" | "tel" | "username" | "off" | undefined
 }
 
 const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder, placeholderTextColor,
-    editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing, secureTextEntry }) => {
+    editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
+    secureTextEntry, keyboardType, defaultValue, autoCompleteType }) => {
 
     const width = Dimensions.get("window").width * 0.8;
     const height = Dimensions.get("window").height * 0.07;
+    
     return (
         <View
             style={{
@@ -46,7 +52,7 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
                 style={{
                     backgroundColor: AppColors.white,
                     borderRadius: 30,
-                    fontFamily: "Chewy",
+                    fontFamily: 'Chewy Regular',
                     color: AppColors.base,
                     position: "absolute",
                     left: width / 8,
@@ -71,11 +77,15 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
                 value={value}
                 onSubmitEditing={onSubmitEditing}
                 secureTextEntry={secureTextEntry}
+                keyboardType={keyboardType}
+                defaultValue={defaultValue}
+                autoCompleteType={autoCompleteType}
                 style={{
                     borderRadius: 30,
                     marginHorizontal: width / 10,
                     color: AppColors.base,
                 }}
+
             ></TextInput>
         </View>
     );

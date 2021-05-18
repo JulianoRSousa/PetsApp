@@ -5,7 +5,11 @@ import api from '../services/api';
 
 interface User {
   name: string;
-  email: string;
+  followersCount?: number;
+  postsCount?: number;
+  petsCount?: number;
+  profileUrl?: string;
+  email?: string;
 }
 
 interface AuthContextData {
@@ -21,6 +25,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     async function loadStorageData() {
@@ -36,7 +41,7 @@ const AuthProvider: React.FC = ({children}) => {
     }
 
     loadStorageData();
-  });
+  },[]);
 
   async function signIn() {
     const response = await auth.signIn();
