@@ -1,6 +1,4 @@
-import React, {
-    MutableRefObject
-} from "react";
+import React from "react";
 import {
     View,
     Text,
@@ -35,28 +33,27 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
     editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
     secureTextEntry, keyboardType, defaultValue, autoCompleteType }) => {
 
-    const width = Dimensions.get("window").width * 0.8;
-    const height = Dimensions.get("window").height * 0.07;
+    const width = Dimensions.get("window").width;
+    const height = Dimensions.get("window").height;
     
     return (
         <View
             style={{
                 backgroundColor: AppColors.white,
+                borderTopLeftRadius:0,
                 borderRadius: 30,
-                width: width,
-                marginVertical: 10,
+                width: width * 0.72,
+                height: height  * 0.07,
+                marginBottom: height * 0.045,
                 elevation: 5,
             }}
         >
-            <Text
+             <Text
                 style={{
-                    backgroundColor: AppColors.white,
+                    backgroundColor:'blue',
                     borderRadius: 30,
-                    fontFamily: 'Chewy Regular',
+                    fontFamily: "Chewy",
                     color: AppColors.base,
-                    position: "absolute",
-                    left: width / 8,
-                    top: -(height / 6),
                     paddingHorizontal: 5,
                     fontSize: 16,
                 }}
@@ -81,12 +78,14 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
                 defaultValue={defaultValue}
                 autoCompleteType={autoCompleteType}
                 style={{
+                    backgroundColor:'red',
                     borderRadius: 30,
                     marginHorizontal: width / 10,
                     color: AppColors.base,
                 }}
 
-            ></TextInput>
+            ></TextInput> 
+            {/**/}
         </View>
     );
 }

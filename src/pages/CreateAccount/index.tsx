@@ -6,13 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import PetsTextInput from '../../components/TextInput';
 
 const CreateAccount: React.FC = () => {
-  const isAndroid = Platform.OS === 'android';
   const height = Dimensions.get("window").height;
   const navigation = useNavigation();
   useEffect(() => {
-    if (isAndroid) {
-
-    }
   })
 
   return (

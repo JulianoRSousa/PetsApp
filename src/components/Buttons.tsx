@@ -6,8 +6,9 @@ interface Props {
     readonly color: 'blue' | 'light' | 'orange';
     readonly tittle: string;
     onPress: any;
+
 }
-const width = Dimensions.get("window").width * 0.45;
+const width = Dimensions.get("window").width * 0.42;
 const height = Dimensions.get("window").height * 0.07;
 
 const PetsButton: React.FC<Props> = ({ onPress, color, tittle }) => {
