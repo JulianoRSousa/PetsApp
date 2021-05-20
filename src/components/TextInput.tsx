@@ -41,6 +41,7 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
             style={{
                 backgroundColor: AppColors.white,
                 borderTopLeftRadius:0,
+                borderTopRightRadius:0,
                 borderRadius: 30,
                 width: width * 0.72,
                 height: height  * 0.07,
@@ -50,12 +51,15 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
         >
              <Text
                 style={{
-                    backgroundColor:'blue',
-                    borderRadius: 30,
+                    borderBottomLeftRadius:0,
+                    borderBottomRightRadius:0,
+                    borderRadius: 10,
                     fontFamily: "Chewy",
                     color: AppColors.base,
                     paddingHorizontal: 5,
                     fontSize: 16,
+                    marginTop:-10,
+                    backgroundColor:AppColors.white,
                 }}
             >
                 {title}
@@ -78,9 +82,9 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
                 defaultValue={defaultValue}
                 autoCompleteType={autoCompleteType}
                 style={{
-                    backgroundColor:'red',
                     borderRadius: 30,
-                    marginHorizontal: width / 10,
+                    marginHorizontal: width / 12,
+                    marginTop:-15,
                     color: AppColors.base,
                 }}
 
