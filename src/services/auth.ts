@@ -17,7 +17,7 @@ interface Response {
 }
 
 export async function signIn(username, pass): Promise<Response> {
- 
+  let createAuthPromise;
     await api
       .post(
         "/createauth",
@@ -30,7 +30,7 @@ export async function signIn(username, pass): Promise<Response> {
         },
       )
       .then(async Res => {
-        return new Promise(resolve => {
+        createAuthPromise = new Promise(resolve => {
           resolve({
             token: Res.data._id,
             auth: Res.data.auth,
@@ -45,4 +45,5 @@ export async function signIn(username, pass): Promise<Response> {
           });
         });
       });
+      return createAuthPromise;
 }
