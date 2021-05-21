@@ -1,31 +1,34 @@
-import React, {createContext, useState, useEffect, useContext} from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as auth from '../services/auth';
 import api from '../services/api';
 
 interface User {
-  name: string;
+  id?: string | undefined;
+  username?: string;
+  firstname?: string;
+  lastname?: string;
+  male: boolean | null;
+  profilePictureUrl?: string;
   followersCount?: number;
   postsCount?: number;
   petsCount?: number;
-  profileUrl?: string;
-  email?: string;
-}
+};
 
 interface AuthContextData {
   signed: boolean;
-  user: User | null;
+  user: User | null | undefined;
   loading: boolean;
-  signIn(): Promise<void>;
+  signIn(username: string, pass: string): Promise<void>;
   signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider: React.FC = ({children}) => {
-  const [user, setUser] = useState<User | null>(null);
+const AuthProvider: React.FC = ({ children }) => {
+  const [user, setUser] = useState<User | null | undefined>(null);
   const [loading, setLoading] = useState(true);
-  
+
 
   useEffect(() => {
     async function loadStorageData() {
@@ -41,16 +44,21 @@ const AuthProvider: React.FC = ({children}) => {
     }
 
     loadStorageData();
-  },[]);
+  }, []);
 
-  async function signIn() {
-    const response = await auth.signIn();
+  async function signIn(username, pass) {
+    try {
+      const response = await auth.signIn(username, pass);
     setUser(response.user);
 
     api.defaults.headers.Authorization = `Baerer ${response.token}`;
 
     await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
     await AsyncStorage.setItem('@RNAuth:token', response.token);
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   async function signOut() {
@@ -60,7 +68,7 @@ const AuthProvider: React.FC = ({children}) => {
 
   return (
     <AuthContext.Provider
-      value={{signed: !!user, user, loading, signIn, signOut}}>
+      value={{ signed: !!user, user, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
@@ -76,4 +84,4 @@ function useAuth() {
   return context;
 }
 
-export {AuthProvider, useAuth};
+export { AuthProvider, useAuth };

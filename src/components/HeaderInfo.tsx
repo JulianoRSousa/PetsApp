@@ -41,7 +41,7 @@ const HeaderInfo: React.FC = () => {
                         <Image
                             style={style.image}
                             source={{
-                                uri: user?.profileUrl,
+                                uri: user?.profilePictureUrl,
                             }}
                         />
                     </View>
@@ -49,7 +49,7 @@ const HeaderInfo: React.FC = () => {
 
             </View>
             <View style={style.infoContainer}>
-                <Text style={{ fontSize: 24, color: 'white' }}>{user?.name}</Text>
+                <Text style={{ fontFamily: "Chewy", fontSize: 24, color: 'white' }}>{user?.firstname} {user?.lastname}</Text>
                 <Text style={style.text}>{followersCount}</Text>
                 <Text style={style.text}>{postsCount}</Text>
                 <Text style={style.text}>{petsCount}</Text>
@@ -99,7 +99,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        fontFamily: 'Chewy',
+        fontFamily: "Chewy",
         fontSize: 16,
         color: AppColors.white
     },

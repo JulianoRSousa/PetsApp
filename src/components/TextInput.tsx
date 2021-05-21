@@ -1,12 +1,18 @@
-import React from "react";
+import React, { LegacyRef, MutableRefObject, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
 import {
     View,
     Text,
     TextInput,
     Dimensions,
-    KeyboardType
+    KeyboardType,
+    ViewProps,
+    Button,
+    ButtonProps,
+    TextInputProps,
 } from "react-native";
 import * as AppColors from '../assets/Colors';
+
+
 
 interface CustomInput {
     title?: string,
@@ -22,44 +28,46 @@ interface CustomInput {
     multiline?: boolean;
     numberOfLines?: number;
     value?: string;
-    onSubmitEditing?: () => void;
+    onSubmitEditing?: Promise<void> | undefined | any;
     secureTextEntry?: boolean;
     keyboardType?: KeyboardType;
     defaultValue?: string;
     autoCompleteType?: "cc-csc" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-number" | "email" | "name" | "password" | "postal-code" | "street-address" | "tel" | "username" | "off" | undefined
 }
 
-const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder, placeholderTextColor,
+const PetsTextInput: React.FC<CustomInput> = ({title, onChangeText, placeholder, placeholderTextColor,
     editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
     secureTextEntry, keyboardType, defaultValue, autoCompleteType }) => {
 
+  
+
     const width = Dimensions.get("window").width;
     const height = Dimensions.get("window").height;
-    
+
     return (
         <View
             style={{
                 backgroundColor: AppColors.white,
-                borderTopLeftRadius:0,
-                borderTopRightRadius:0,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
                 borderRadius: 30,
                 width: width * 0.72,
-                height: height  * 0.07,
+                height: height * 0.07,
                 marginBottom: height * 0.045,
                 elevation: 5,
             }}
         >
-             <Text
+            <Text
                 style={{
-                    borderBottomLeftRadius:0,
-                    borderBottomRightRadius:0,
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
                     borderRadius: 10,
                     fontFamily: "Chewy",
                     color: AppColors.base,
                     paddingHorizontal: 5,
                     fontSize: 16,
-                    marginTop:-10,
-                    backgroundColor:AppColors.white,
+                    marginTop: -10,
+                    backgroundColor: AppColors.white,
                 }}
             >
                 {title}
@@ -84,11 +92,11 @@ const PetsTextInput: React.FC<CustomInput> = ({ title, onChangeText, placeholder
                 style={{
                     borderRadius: 30,
                     marginHorizontal: width / 12,
-                    marginTop:-15,
+                    marginTop: -15,
                     color: AppColors.base,
                 }}
 
-            ></TextInput> 
+            ></TextInput>
             {/**/}
         </View>
     );
