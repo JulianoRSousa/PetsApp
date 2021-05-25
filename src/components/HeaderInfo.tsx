@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/auth";
 
 
 const width = Dimensions.get("window").width;
-const height = Dimensions.get("window").height * 0.40;
+const height = Dimensions.get("window").height;
 
 
 const HeaderInfo: React.FC = () => {
@@ -63,10 +63,10 @@ export default HeaderInfo;
 const style = StyleSheet.create({
     container: {
         alignSelf:'flex-start',
-        top:0,
+        flex:1,
         backgroundColor: AppColors.base,
-        height: height,
-        width: width,
+        maxHeight: height,
+        maxWidth: width,
         flexDirection: 'row',
         borderBottomStartRadius: 50,
         borderBottomEndRadius: 50,
