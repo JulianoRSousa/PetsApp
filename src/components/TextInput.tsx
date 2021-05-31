@@ -32,12 +32,13 @@ interface CustomInput {
     secureTextEntry?: boolean;
     keyboardType?: KeyboardType;
     defaultValue?: string;
+    autoCapitalize?: 'none' | 'characters' | 'words' | 'sentences' | undefined
     autoCompleteType?: "cc-csc" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-number" | "email" | "name" | "password" | "postal-code" | "street-address" | "tel" | "username" | "off" | undefined
 }
 
 const PetsTextInput: React.FC<CustomInput> = ({title, onChangeText, placeholder, placeholderTextColor,
     editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
-    secureTextEntry, keyboardType, defaultValue, autoCompleteType }) => {
+    secureTextEntry, keyboardType, defaultValue, autoCompleteType, autoCapitalize }) => {
 
   
 
@@ -89,6 +90,7 @@ const PetsTextInput: React.FC<CustomInput> = ({title, onChangeText, placeholder,
                 keyboardType={keyboardType}
                 defaultValue={defaultValue}
                 autoCompleteType={autoCompleteType}
+                autoCapitalize={autoCapitalize}
                 style={{
                     borderRadius: 30,
                     marginHorizontal: width / 12,

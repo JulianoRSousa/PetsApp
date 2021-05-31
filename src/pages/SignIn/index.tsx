@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
       <View style={{ alignContent: 'center', justifyContent: 'center', maxHeight: height, flex: 1 }}>
         <Text style={{ color: 'white', fontFamily: "Chewy", fontSize: 60, textAlign: 'center', textAlignVertical: 'center' }}>Pets</Text>
       </View>
-      <PetsTextInput title={'Nome de usuário'} secureTextEntry={false} value={username} onChangeText={setUsername} />
+      <PetsTextInput title={'Nome de usuário'} secureTextEntry={false} autoCapitalize='none' autoCompleteType='off'  value={username} onChangeText={setUsername} />
       <PetsTextInput title={'Senha'} secureTextEntry={true} value={pass} onChangeText={setPass} onSubmitEditing={() => handleSign()} />
       <PetsButton onPress={() => handleSign()} tittle={'Login'} color="blue" />
       <PetsButton onPress={() => navigation.navigate('CreateAccount')} tittle={'Criar Conta'} color="light" />

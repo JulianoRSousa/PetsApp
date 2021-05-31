@@ -36,7 +36,7 @@ const DrawerProfile: React.FC = () => (
 
 const AppRoutes: React.FC = () => (
   <Tab.Navigator>
-    <Stack.Screen name="HomeScreen" component={DrawerHomeScreen} options={{headerShown:true, title: 'Fesed' }} />
+    <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:true, title: 'Feed' }} />
     <Stack.Screen name="HomeScreena" component={DrawerFriends}  options={{headerShown:true, title: 'Feaaed' }} />
   </Tab.Navigator>
 );
