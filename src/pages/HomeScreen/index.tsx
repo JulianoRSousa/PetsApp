@@ -42,6 +42,16 @@ const HomeScreen: React.FC = () => {
       speed={1.2}
       style={{height:200, width:200}}
       />
+<<<<<<< HEAD
+=======
+      <Lottie
+      source={require('../../assets/animations/dog-caramelo.json')}
+      autoPlay
+      loop
+      speed={1.2}
+      style={{height:200, width:200}}
+      />
+>>>>>>> 7cee80ff743b230215ee1130819c8074a120c7ab
     </ScrollView>
   );
 };

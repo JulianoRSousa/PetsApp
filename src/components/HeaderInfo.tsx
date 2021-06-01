@@ -65,12 +65,12 @@ const style = StyleSheet.create({
         alignSelf:'flex-start',
         flex:1,
         backgroundColor: AppColors.base,
-        maxHeight: height,
+        minHeight: height*.2365,
+        maxHeight: height*.3,
         maxWidth: width,
         flexDirection: 'row',
-        borderBottomStartRadius: 50,
-        borderBottomEndRadius: 50,
         elevation: 3
+        
     },
     imageContainer: {
         flex: 1,
