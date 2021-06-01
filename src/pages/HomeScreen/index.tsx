@@ -21,6 +21,27 @@ const HomeScreen: React.FC = () => {
       speed={1.2}
       style={{height:200, width:200}}
       />
+      <Lottie
+      source={require('../../assets/animations/dog-caramelo.json')}
+      autoPlay
+      loop
+      speed={1.2}
+      style={{height:200, width:200}}
+      />
+      <Lottie
+      source={require('../../assets/animations/dog-caramelo.json')}
+      autoPlay
+      loop
+      speed={1.2}
+      style={{height:200, width:200}}
+      />
+      <Lottie
+      source={require('../../assets/animations/dog-caramelo.json')}
+      autoPlay
+      loop
+      speed={1.2}
+      style={{height:200, width:200}}
+      />
     </ScrollView>
   );
 };
