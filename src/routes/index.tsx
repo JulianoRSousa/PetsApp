@@ -7,13 +7,12 @@ import AuthRoutes from "../routes/auth.routes";
 import AppRoutes from "../routes/app.routes";
 
 const Routes: React.FC = () => {
+
   const { signed, loading } = useAuth();
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor:'#ff8637' }}>
-        <ActivityIndicator size="large" color="#666" />
-      </View>
+      <></>
     );
   }
 
