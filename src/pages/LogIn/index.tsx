@@ -1,15 +1,18 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { ImageBackground, View, Text, StatusBar } from 'react-native';
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import PetsTextInput from '../../components/PetsTextInput';
 import { useAuth } from "../../contexts/auth";
 import PetMainButton from '../../components/PetsMainButton';
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+import NavigationBar from 'react-native-navbar-color';
 
 
 
 const SignIn: React.FC = () => {
+
+  NavigationBar.setColor('#ff8637')
 
   const { signIn } = useAuth();
 
@@ -28,7 +31,7 @@ const SignIn: React.FC = () => {
           resizeMode="cover"
           style={{
             position: 'absolute',
-            top:0,
+            top: 0,
             height: '50%',
             width: '100%',
             justifyContent: "center",
@@ -61,10 +64,14 @@ const SignIn: React.FC = () => {
               <Text style={{ color: 'white', fontFamily: 'Quicksand-Bold' }}>Entrar com</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-              <IconMaterial name='google' color={'#FF4B26'} size={30} />
-              <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
+              <TouchableOpacity>
+                <IconMaterial name='google' color={'#FF4B26'} size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
+              </TouchableOpacity>
             </View>
-            <PetMainButton fontSize={20} width={0.352} height={0.0625} marginTop={10} tittle='criar conta' onPress={() => { }} />
+            <PetMainButton padding={8} fontSize={16} width={0.352} height={0.0625} marginTop={10} tittle='criar conta' onPress={() => { }} />
           </View>
         </View>
       </ImageBackground>
