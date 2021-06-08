@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React from 'react';
 import { Dimensions,  } from 'react-native';
 import { useAuth } from "../../contexts/auth";
 

@@ -12,7 +12,9 @@ const Routes: React.FC = () => {
 
   if (loading) {
     return (
-      <></>
+      <View style={{backgroundColor:'#ff8637', flex:1}}>
+
+      </View>
     );
   }
 

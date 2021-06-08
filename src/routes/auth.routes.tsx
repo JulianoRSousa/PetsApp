@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as AppColors from '../assets/Colors';
 
 
-import SignIn from '../pages/SignIn';
+import SignIn from '../pages/LogIn';
 import CreateAccount from '../pages/CreateAccount';
 
 const AuthStack = createStackNavigator();
