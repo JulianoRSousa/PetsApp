@@ -16,8 +16,8 @@ const AuthRoutes: React.FC = () => (
       options={{
         title: 'Criar Conta',
         headerTitleAlign: 'center',
-        headerShown: true,
-        headerStyle: { backgroundColor: AppColors.greenBase },
+        headerShown: false,
+        headerStyle: { backgroundColor: AppColors.base },
         headerTintColor: 'white'
       }} />
   </AuthStack.Navigator>

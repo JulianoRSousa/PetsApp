@@ -1,10 +1,121 @@
-import React from "react";
+import React, { useState } from "react";
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import { Dimensions } from "react-native";
+import PetsTextInput from '../../components/PetsTextInput';
+import { useAuth } from "../../contexts/auth";
+import PetsPicker from '../../components/PetsPicker';
+import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
+import NavigationBar from 'react-native-navbar-color';
+import { useNavigation } from '@react-navigation/native';
+import { Picker } from "@react-native-picker/picker";
+import * as AppColors from '../../assets/Colors';
+import PetsButton from "../../components/PetsMainButton";
+import CheckBox from '@react-native-community/checkbox';
+import App from "../../components/DrawerMenu";
+
+
 
 const CreateAccount: React.FC = () => {
-  const height = Dimensions.get("window").height;
+
+  NavigationBar.setColor('#ff8637')
+
+  const heightScreen = Dimensions.get("window").height;
+  const widthScreen = Dimensions.get("window").width;
+  const [fullName, setFullName] = useState('null');
+  const [bDate, setBDate] = useState('null');
+  const [selectedGender, setSelectedGender] = useState('null');
+  const [email, setEmail] = useState('null');
+  const [pass, setPass] = useState('null');
+  const [repeatPass, setRepeatPass] = useState('null');
+  const [termsCheckBox, setTermsCheckBox] = useState(false)
+
+
   return (
     <>
+      <ImageBackground source={require('../../assets/images/LoginBackImage.png')}
+        resizeMode="stretch"
+        style={{ flex: 1, justifyContent: "center" }}>
+        <ImageBackground source={require('../../assets/images/Paws.png')}
+          resizeMode="cover"
+          style={{
+            position: 'absolute',
+            top: 0,
+            height: '50%',
+            width: '100%',
+            justifyContent: "center",
+          }}>
+        </ImageBackground>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }} >
+          <Text style={{ fontFamily: 'SomethingRegular',  color: AppColors.light, fontSize: 90, }}>pets</Text>
+        </View>
+        <Text  style={{width:'73%', 
+        paddingBottom:10, 
+        alignSelf:'center', 
+        backgroundColor:'#F9A862',  
+        fontFamily:'Quicksand-Regular', 
+        textAlign:'center', 
+        fontSize:30, 
+        color: AppColors.light}}
+        >CADASTRE-SE</Text>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }} >
+          <PetsTextInput placeholder={"Nome Completo"} onChangeText={setFullName} fontSize={18} height={0.07} marginVertical={4}/>
+          <PetsTextInput placeholder={"Data de nascimento"} onChangeText={setBDate} fontSize={18} height={0.07} marginVertical={4}/>
+          <View style={{
+            backgroundColor: '#D5702E',
+            width: widthScreen * 0.7463,
+            height: heightScreen * 0.0843,
+            elevation: 8,
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}>
+            <View style={{
+              backgroundColor: AppColors.light,
+              width: '94%',
+              alignSelf: 'center',
+              height: '70%'
+            }}>
+              <Picker
+                dropdownIconColor={'#ff8637'}
+                mode={"dropdown"}
+                selectedValue={selectedGender}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedGender(itemValue)
+                }>
+                <Picker.Item fontFamily={'Quicksand-Regular'} enabled={false} color={'#0008'} label="gênero" value="null" />
+                <Picker.Item fontFamily={'Quicksand-Regular'} color={'#0008'} label="masculino" value="masculino" />
+                <Picker.Item fontFamily={'Quicksand-Regular'} color={'#0008'} label="feminino" value="feminino" />
+              </Picker>
+            </View>
+          </View>
+          <PetsTextInput placeholder={"email"} onChangeText={setEmail} fontSize={20} height={0.07} marginVertical={4} />
+          <PetsTextInput placeholder={"senha"} onChangeText={setPass} fontSize={20} height={0.07} marginVertical={4} />
+          <PetsTextInput placeholder={"repetir senha"} onChangeText={setRepeatPass} fontSize={20} height={0.07} marginVertical={4} />
+          <View style={{ flexDirection: 'row', justifyContent:'center', alignItems:'center' }}>
+            <CheckBox
+              onTintColor={'#fff'}
+              onCheckColor={'red'}
+              value={termsCheckBox}
+              tintColor={AppColors.light}
+              onFillColor={AppColors.light}
+              onValueChange={(newValue) => setTermsCheckBox(newValue)}
+            /><Text style={{ fontSize: 9 }}>li e aceito os termos e condições disponíveis neste link</Text>
+          </View>
+          <PetsButton marginTop={7} tittle={'criar conta'} onPress={() => { }} />
+          <Text style={{ marginVertical: 7, color: AppColors.light }}>ou</Text>
+          <View style={{ marginBottom: 8, elevation: 10, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+            <Text style={{color: AppColors.light }}>Criar conta com </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity style={{ paddingHorizontal: 5 }}>
+              <IconMaterial name='google' color={'#FF4B26'} size={35} />
+            </TouchableOpacity>
+            <TouchableOpacity style={{ paddingHorizontal: 5 }}>
+              <IconIonicons name='logo-facebook' color={'#475993'} size={35} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
     </>
   );
 };

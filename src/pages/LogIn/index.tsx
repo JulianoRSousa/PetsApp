@@ -7,13 +7,14 @@ import PetMainButton from '../../components/PetsMainButton';
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const SignIn: React.FC = () => {
 
   NavigationBar.setColor('#ff8637')
-
+  const navigation = useNavigation();
   const { signIn } = useAuth();
 
   const [username_email, setUsername_email] = useState('');
@@ -26,7 +27,9 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      <ImageBackground source={require('../../assets/images/LoginBackImage.png')} resizeMode="stretch" style={{ flex: 1, justifyContent: "center" }}>
+      <ImageBackground source={require('../../assets/images/LoginBackImage.png')}
+        resizeMode="stretch"
+        style={{ flex: 1, justifyContent: "center" }}>
         <ImageBackground source={require('../../assets/images/Paws.png')}
           resizeMode="cover"
           style={{
@@ -71,7 +74,14 @@ const SignIn: React.FC = () => {
                 <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
               </TouchableOpacity>
             </View>
-            <PetMainButton padding={8} fontSize={16} width={0.352} height={0.0625} marginTop={10} tittle='criar conta' onPress={() => { }} />
+            <PetMainButton
+              padding={8}
+              marginTop={20}
+              fontSize={16}
+              width={0.352}
+              height={0.0625}
+              tittle='criar conta'
+              onPress={() => navigation.navigate("CreateAccount")} />
           </View>
         </View>
       </ImageBackground>

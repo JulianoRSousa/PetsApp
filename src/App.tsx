@@ -22,9 +22,9 @@ const App: React.FC = () => {
     OneSignal.setLogLevel(6, 0);
     OneSignal.setAppId("d43bf434-d3d0-4bcb-bf1e-bff69d6047e4");
 
-    OneSignal.promptForPushNotificationsWithUserResponse(response => {
-      console.log("Prompt response:", response);
-    });
+    // OneSignal.promptForPushNotificationsWithUserResponse(response => {
+    //   console.log("Prompt response:", response);
+    // });
     OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
       console.log("OneSignal: notification will show in foreground:", notificationReceivedEvent);
       let notification = notificationReceivedEvent.getNotification();
