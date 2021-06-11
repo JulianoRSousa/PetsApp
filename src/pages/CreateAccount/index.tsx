@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { Dimensions } from "react-native";
 import { useAuth } from "../../contexts/auth";
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,7 +11,7 @@ import * as AppColors from '../../assets/Colors';
 import PetsButton from "../../components/PetsMainButton";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';
-import { PetsInputTextView, PetsTextInput } from "./styles";
+import { PetsInputTextViewMinor, PetsTextInputMinor } from "./styles";
 
 
 
@@ -32,10 +32,10 @@ const CreateAccount: React.FC = () => {
 
 
   return (
-    <>
+    <ScrollView style={{backgroundColor:'#ff8637'}}>
       <ImageBackground source={require('../../assets/images/LoginBackImage.png')}
         resizeMode="stretch"
-        style={{ flex: 1, justifyContent: "center" }}>
+        style={{ height: '100%', justifyContent: "center", alignItems:'center' }}>
         <StatusBar backgroundColor={'#fff0'} translucent={true} />
         <ImageBackground source={require('../../assets/images/Paws.png')}
           resizeMode="cover"
@@ -61,51 +61,41 @@ const CreateAccount: React.FC = () => {
           color: AppColors.light
         }}
         >CADASTRE-SE</Text>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }} >
-          <PetsTextInput
-            placeholder={"nome completo"}
-            onChangeText={setFullName}
-            fontSize={18}
-            height={0.07}
-            marginVertical={4} />
-          <PetsTextInput placeholder={"data de nascimento"} onChangeText={setBDate}
-          height={0.07} 
-          arginVertical={4} />
+          <PetsInputTextViewMinor>
+            <PetsTextInputMinor
+              placeholder={"nome completo"}
+              onChangeText={setFullName} />
+          </PetsInputTextViewMinor>
 
-          {/* <TextInputMask
-            style={{ width: '70%', 
-            backgroundColor: 'white', 
-            fontSize: 18, 
-            fontFamily: 'Quicksand-Regular', 
-            color: AppColors.darkLightfont
-            }}
-            placeholderTextColor={AppColors.darkLightfont}
-            type='cel-phone'
-            secureTextEntry={true}
-            placeholder={'Senha'}
-            options={{
-              format: '*'
-            }}
-            value={bDate}
-            onChangeText={text => {
-              setBDate(text)
-            }}
-          /> */}
-          <PetsTextInput></PetsTextInput>
-          <View style={{
-            backgroundColor: '#D5702E',
-            width: widthScreen * 0.7463,
-            height: heightScreen * 0.0843,
-            elevation: 8,
-            alignContent: 'center',
-            justifyContent: 'center',
-            marginVertical: 4,
-          }}>
+          <PetsInputTextViewMinor>
+            <TextInputMask
+              style={{
+                width: '97%',
+                height: '84%',
+                backgroundColor: 'white',
+                fontSize: 16,
+                fontFamily: "Quicksand-Light",
+                color: AppColors.darkLightfont
+              }}
+              placeholderTextColor={AppColors.darkLightfont}
+              type='datetime'
+              placeholder={'data de nascimento DD/MM/YYYY'}
+              options={{
+                format: 'DD/MM/YYYY'
+              }}
+              value={bDate}
+              onChangeText={text => {
+                setBDate(text)
+              }}
+            />
+          </PetsInputTextViewMinor>
+
+          <PetsInputTextViewMinor>
             <View style={{
               backgroundColor: AppColors.light,
-              width: '94%',
+              width: '97%',
               alignSelf: 'center',
-              height: '70%'
+              height: '84%'
             }}>
               <Picker
                 dropdownIconColor={'#ff8637'}
@@ -114,18 +104,24 @@ const CreateAccount: React.FC = () => {
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedGender(itemValue)
                 }>
-                <Picker.Item fontFamily={'Quicksand-Regular'} enabled={false} color={'#0008'} label="gênero" value="null" />
-                <Picker.Item fontFamily={'Quicksand-Regular'} color={'#0008'} label="masculino" value="masculino" />
-                <Picker.Item fontFamily={'Quicksand-Regular'} color={'#0008'} label="feminino" value="feminino" />
+                <Picker.Item fontFamily={'Quicksand-Regular'} enabled={false} color={AppColors.darkLightfont} label="gênero" value="null" />
+                <Picker.Item fontFamily={'Quicksand-Regular'} color={AppColors.darkLightfont} label="masculino" value="masculino" />
+                <Picker.Item fontFamily={'Quicksand-Regular'} color={AppColors.darkLightfont} label="feminino" value="feminino" />
               </Picker>
             </View>
-          </View>
-          <PetsTextInput placeholder={"email"} onChangeText={setEmail} fontSize={20} height={0.07} marginVertical={4} />
-          <PetsTextInput placeholder={"senha"} onChangeText={setPass} fontSize={20} height={0.07} marginVertical={4} />
-          <PetsTextInput placeholder={"repetir senha"} onChangeText={setRepeatPass} fontSize={20} height={0.07} marginVertical={4} />
+          </PetsInputTextViewMinor>
+          <PetsInputTextViewMinor>
+            <PetsTextInputMinor placeholder={"email"} onChangeText={setEmail} fontSize={20} height={0.07} marginVertical={4} />
+          </PetsInputTextViewMinor>
+          <PetsInputTextViewMinor>
+            <PetsTextInputMinor placeholder={"senha"} onChangeText={setPass} fontSize={20} height={0.07} marginVertical={4} />
+          </PetsInputTextViewMinor>
+          <PetsInputTextViewMinor>
+            <PetsTextInputMinor placeholder={"repetir senha"} onChangeText={setRepeatPass} fontSize={20} height={0.07} marginVertical={4} />
+          </PetsInputTextViewMinor>
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
             <BouncyCheckbox
-              size={15}
+              size={18}
               fillColor="#0eeb50ac"
               unfillColor="#fff"
               iconStyle={{ borderColor: AppColors.baseLight }}
@@ -147,9 +143,8 @@ const CreateAccount: React.FC = () => {
               <IconIonicons name='logo-facebook' color={'#475993'} size={35} />
             </TouchableOpacity>
           </View>
-        </View>
       </ImageBackground>
-    </>
+    </ScrollView>
   );
 };
 export default CreateAccount;
