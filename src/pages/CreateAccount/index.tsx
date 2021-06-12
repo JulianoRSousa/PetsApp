@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { ImageBackground, View, Text, StatusBar, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import React, { useState, useRef, useEffect } from "react";
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
 import { useAuth } from "../../contexts/auth";
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
 import { useNavigation } from '@react-navigation/native';
-import { Picker } from "@react-native-picker/picker";
 import * as AppColors from '../../assets/Colors';
 import PetsButton from "../../components/PetsMainButton";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';
-import { PetsInputTextViewMinor, PetsTextInputMinor } from "./styles";
+import { PetsInputTextViewMinor } from "./styles";
 
 
 
@@ -21,16 +20,23 @@ const CreateAccount: React.FC = () => {
 
   const heightScreen = Dimensions.get("window").height;
   const widthScreen = Dimensions.get("window").width;
-  const [fullName, setFullName] = useState('null');
-  const [bDate, setBDate] = useState('null');
-  const [selectedGender, setSelectedGender] = useState('null');
-  const [email, setEmail] = useState('null');
-  const [pass, setPass] = useState('null');
-  const [repeatPass, setRepeatPass] = useState('null');
+  const [fullName, setFullName] = useState('');
+  const [bDate, setBDate] = useState('');
+  const [selectedGender, setSelectedGender] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [repeatPass, setRepeatPass] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState(false)
 
   const height = Dimensions.get('screen').height;
 
+  const bDate_ref= useRef(null);
+  const email_ref = useRef(null);
+  const pass_ref = useRef(null);
+  const repeatPass_ref = useRef(null);
+  const terms_ref = useRef(null);
+
+  const [ secured, setSecured ] = useState<boolean>(true)
 
   return (
     <View style={{ backgroundColor: '#ff8637' }}>
@@ -62,13 +68,32 @@ const CreateAccount: React.FC = () => {
           color: AppColors.light
         }}
         >CADASTRE-SE</Text>
-        <PetsInputTextViewMinor>
-          <PetsTextInputMinor
-            placeholder={"nome completo"}
-            onChangeText={setFullName} />
+         <PetsInputTextViewMinor>
+          <TextInputMask
+            style={{
+              width: '97%',
+              height: '84%',
+              backgroundColor: 'white',
+              fontSize: 16,
+              fontFamily: "Quicksand-Light",
+              color: AppColors.darkLightfont
+            }}
+            placeholderTextColor={AppColors.darkLightfont}
+            type='custom'
+            placeholder={'nome completo'}
+            options={{
+              mask: '********************************************************************************************************************************'
+            }}
+            value={fullName}
+            keyboardType={'default'}
+            onChangeText={text => {
+              setFullName(text)
+            }}
+          />
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
+          ref={bDate_ref}
             style={{
               width: '97%',
               height: '84%',
@@ -81,21 +106,18 @@ const CreateAccount: React.FC = () => {
             type='datetime'
             placeholder={'data de nascimento'}
             options={{
-              format: 'DD/MM/YYYY'
+              format: 'DD/MM/YYYY',
             }}
             value={bDate}
+            keyboardType={'numeric'}
             onChangeText={text => {
               setBDate(text)
             }}
           />
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
-          <PetsTextInputMinor placeholder={"email"} 
-          onChangeText={setEmail} 
-          fontSize={20} height={0.07} marginVertical={4} />
-        </PetsInputTextViewMinor>
-        <PetsInputTextViewMinor>
           <TextInputMask
+          ref={email_ref}
             style={{
               width: '97%',
               height: '84%',
@@ -105,14 +127,41 @@ const CreateAccount: React.FC = () => {
               color: AppColors.darkLightfont
             }}
             placeholderTextColor={AppColors.darkLightfont}
-            type='datetime'
+            type='custom'
+            placeholder={'email'}
+            options={{
+              mask: '*********************************************************************'
+            }}
+            value={email}
+            keyboardType={'email-address'}
+            onChangeText={text => {
+              setEmail(text)
+            }}
+          />
+        </PetsInputTextViewMinor>
+        <PetsInputTextViewMinor>
+          <TextInputMask
+          ref={pass_ref}
+            style={{
+              width: '97%',
+              height: '84%',
+              backgroundColor: 'white',
+              fontSize: 16,
+              fontFamily: "Quicksand-Light",
+              fontWeight: '100',
+              color: AppColors.darkLightfont
+            }}
+            placeholderTextColor={AppColors.darkLightfont}
+            type='custom'
             placeholder={'senha'}
             options={{
-              format: 'DD/MM/YYYY'
+              mask: '************************************************',
             }}
-            value={bDate}
+            keyboardType={'default'}
+            secureTextEntry={secured}
+            value={pass}
             onChangeText={text => {
-              setBDate(text)
+              setPass(text)
             }}
           />
         </PetsInputTextViewMinor>
@@ -124,22 +173,25 @@ const CreateAccount: React.FC = () => {
               backgroundColor: 'white',
               fontSize: 16,
               fontFamily: "Quicksand-Light",
+              fontWeight: '200',
               color: AppColors.darkLightfont
             }}
             placeholderTextColor={AppColors.darkLightfont}
-            type='datetime'
-            placeholder={'repetir senha'}
+            type='custom'
+            placeholder={'repita a senha'}
             options={{
-              format: 'DD/MM/YYYY'
+              mask: '************************************************',
             }}
-            value={bDate}
+            keyboardType={'default'}
+            secureTextEntry={true}
+            value={repeatPass}
             onChangeText={text => {
-              setBDate(text)
+              setRepeatPass(text)
             }}
           />
         </PetsInputTextViewMinor>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <View  style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <BouncyCheckbox
             size={18}
             fillColor="#0eeb50ac"

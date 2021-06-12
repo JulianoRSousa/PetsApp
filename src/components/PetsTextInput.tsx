@@ -33,11 +33,12 @@ interface CustomInput {
     margin?: number;
     marginHorizontal?: number;
     marginVertical?: number;
+    fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'bold' | 'normal' 
     autoCapitalize?: 'none' | 'characters' | 'words' | 'sentences' | undefined
     autoCompleteType?: "cc-csc" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-number" | "email" | "name" | "password" | "postal-code" | "street-address" | "tel" | "username" | "off" | undefined
 }
 
-const PetsTextInput: React.FC<CustomInput> = ({marginVertical, marginHorizontal, margin, style, backgroundColor, textColor ,fontSize, width, height, onChangeText, placeholder, placeholderTextColor,
+const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, marginHorizontal, margin, style, backgroundColor, textColor ,fontSize, width, height, onChangeText, placeholder, placeholderTextColor,
     editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
     secureTextEntry, keyboardType, defaultValue, autoCompleteType, autoCapitalize }) => {
 
@@ -87,6 +88,7 @@ const PetsTextInput: React.FC<CustomInput> = ({marginVertical, marginHorizontal,
                     width: '95%',
                     alignSelf:'center',
                     elevation:5,
+                    fontWeight: fontWeight ? fontWeight : 'normal',
                 }}
             ></TextInput>
         </View>

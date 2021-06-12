@@ -43,13 +43,14 @@ const SignIn: React.FC = () => {
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <StatusBar backgroundColor={'#fff0'} translucent={true} />
-          <Text style={{ color: 'white', fontFamily: 'SomethingRegular', fontSize: 190 }}>pets</Text>
+          <Text allowFontScaling={true} style={{ color: 'white', fontFamily: 'SomethingRegular', fontSize: 168 }}>pets</Text>
 
           <View style={{ alignItems: 'center', justifyContent: 'center', height: '60%' }}>
             <PetsTextInput
               marginVertical={10}
               autoCompleteType='off'
               autoCapitalize='none'
+              fontWeight={'200'}
               underlineColorAndroid='#fff'
               placeholder={'usuário/email'}
               value={username_email}
@@ -59,6 +60,8 @@ const SignIn: React.FC = () => {
               autoCompleteType='off'
               autoCapitalize='none'
               placeholder={'senha'}
+              fontWeight={'200'}
+              secureTextEntry={true}
               value={pass}
               onChangeText={setPass}
               onSubmitEditing={() => handleSigIn()} />
