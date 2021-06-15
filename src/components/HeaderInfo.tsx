@@ -50,9 +50,9 @@ const HeaderInfo: React.FC = () => {
             </View>
             <View style={style.infoContainer}>
                 <Text style={{ fontFamily: "Chewy", fontSize: 24, color: 'white' }}>{user?.firstname} {user?.lastname}</Text>
-                <Text style={style.text}>{followersCount}</Text>
-                <Text style={style.text}>{postsCount}</Text>
-                <Text style={style.text}>{petsCount}</Text>
+                <Text style={style.text}>{user?.followersCount}</Text>
+                <Text style={style.text}>{user?.postsCount}</Text>
+                <Text style={style.text}>{user?.petsCount}</Text>
             </View>
         </View>
     )
