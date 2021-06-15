@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, Button, TextInput, FlatList, Image, TouchableOpacity, } from "react-native";
 import api from '../../services/api';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Friends: React.FC = () => {
+
+  const navigation = useNavigation();
+
   const [tags, setTags] = useState('');
   const [resultSearch, setResultSearch] = useState<any>(null);
 
@@ -15,29 +19,33 @@ const Friends: React.FC = () => {
     }).then(async Res => {
       setResultSearch(Res.data)
     })
-    console.log(resultSearch._id)
+  }
+
+  async function OpenUserProfile(user_id) {
+    navigation.navigate('UserProfile', {
+      userID: user_id,
+    })
   }
 
 
   return (
-    <>
-      <View style={{ height: '10%', width: '100%', flexDirection: 'row', backgroundColor: '#fff' }}>
-        <TextInput style={{ width: '80%' }}
+    <View style={{ backgroundColor: '#ff8637', flex: 1 }}>
+      <View style={{ alignSelf: 'center', borderTopEndRadius: 20, borderTopStartRadius: 20, height: '10%', width: '90%', flexDirection: 'row', backgroundColor: '#fff' }}>
+        <TextInput style={{ paddingHorizontal: 25, width: '90%', }}
           value={tags}
           onChangeText={setTags}
           placeholder={'Buscar Amigos'}
           onSubmitEditing={() => Search()}></TextInput>
-        <TouchableOpacity style={{ height: 50, width: 50, alignSelf: 'center', borderRadius:50, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35a' }} onPress={() => Search()}>
-          <Text style={{ color: '#fff' }}>Go</Text>
+        <TouchableOpacity style={{ height: 50, width: 50, alignSelf: 'center', borderRadius: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35a' }} onPress={() => Search()}>
+          <Text style={{ borderRadius: 50, color: '#fff' }}>Go</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, backgroundColor: '#ff8637' }}>
+      <View style={{ flex: 1, width: '90%', alignSelf: 'center', borderRadius: 50, justifyContent:'flex-start' }}>
         <FlatList
-          style={{ backgroundColor: '#222a' }}
           data={resultSearch}
           keyExtractor={item => item._id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row', width: "100%", backgroundColor: '#333d', borderTopWidth: 1, borderColor: '#fff' }}>
+            <TouchableOpacity onPress={() => OpenUserProfile(item._id)} style={{ alignItems: 'center', flexDirection: 'row', width: "100%", backgroundColor: '#333d', borderTopWidth: 1, borderColor: '#fff' }}>
               <Image
                 source={{ uri: item.picture_url }}
                 style={{ resizeMode: 'contain', height: 50, width: 50, borderRadius: 50, margin: 8 }}
@@ -63,8 +71,15 @@ const Friends: React.FC = () => {
             </TouchableOpacity>
           )}
         />
+        <View style={{ 
+        alignSelf: 'center', 
+        borderTopEndRadius: 20, 
+        borderTopStartRadius: 20, 
+        height: '10%', 
+        width: '90%', 
+        backgroundColor: '#fff' }}/>
       </View>
-    </>
+    </View>
   );
 };
 

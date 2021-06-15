@@ -6,7 +6,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 function PetsHeader() {
     const navigation = useNavigation();
     return (
-      <View style={{ backgroundColor: '#ff8637', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: '8.75%' }}>
+      <View style={{ backgroundColor: '#ff8637', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 50 }}>
         <TouchableOpacity></TouchableOpacity>
         <Text style={{ color: '#fff', fontFamily: 'Chewy', fontSize: 24 }}>Pets</Text>
         <TouchableOpacity onPress={()=> navigation.dispatch(DrawerActions.toggleDrawer())}

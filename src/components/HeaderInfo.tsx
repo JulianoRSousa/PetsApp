@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {View, Text, StyleSheet, Dimensions, Image, StatusBar } from "react-native";
 import * as AppColors from '../assets/Colors';
 import { useAuth } from "../contexts/auth";
@@ -10,26 +10,17 @@ const height = Dimensions.get("window").height;
 
 const HeaderInfo: React.FC = () => {
 
-    const [followersCount, setFollowersCount] = useState('');
-    const [petsCount, setPetsCount] = useState('0');
-    const [postsCount, setPostsCount] = useState('0');
     const { user } = useAuth();
 
-    useEffect(() => {
-        followers();
-        posts();
-        pets();
-    }, [])
-
     function followers() {
-        user?.followersCount == 1 ? setFollowersCount('1 Seguidor') : setFollowersCount(user?.followersCount + ' Seguidores')
+       return user?.followersCount== 1 ? '1 Seguidor' : (user?.followersCount + ' Seguidores')
     }
     function posts() {
-        user?.postsCount == 1 ? setPostsCount('1 Post') : setPostsCount(user?.postsCount + ' Post')
+       return user?.postsCount == 1 ? '1 Post' : (user?.postsCount + ' Post')
     }
 
     function pets() {
-        user?.petsCount == 1 ? setPetsCount('1 Pet') : setPetsCount(user?.petsCount + ' Pets')
+      return  user?.petsCount == 1 ? '1 Pet' : (user?.petsCount + ' Pets')
     }
 
     return (
@@ -50,9 +41,9 @@ const HeaderInfo: React.FC = () => {
             </View>
             <View style={style.infoContainer}>
                 <Text style={{ fontFamily: "Chewy", fontSize: 24, color: 'white' }}>{user?.firstname} {user?.lastname}</Text>
-                <Text style={style.text}>{user?.followersCount}</Text>
-                <Text style={style.text}>{user?.postsCount}</Text>
-                <Text style={style.text}>{user?.petsCount}</Text>
+                <Text style={style.text}>{followers()}</Text>
+                <Text style={style.text}>{posts()}</Text>
+                <Text style={style.text}>{pets()}</Text>
             </View>
         </View>
     )
