@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImageBackground, View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import PetsTextInput from '../../components/PetsTextInput';
 import { useAuth } from "../../contexts/auth";
@@ -15,13 +15,16 @@ const SignIn: React.FC = () => {
 
   NavigationBar.setColor('#ff8637')
   const navigation = useNavigation();
-  const { signIn } = useAuth();
+  const { signIn, signed } = useAuth();
 
-  const [username_email, setUsername_email] = useState('');
+  const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
-  async function handleSigIn() {
-    await signIn(username_email, pass)
+
+
+  async function handleSignIn() {
+    navigation.reset;
+    await signIn(email, pass)
   }
 
 
@@ -50,11 +53,11 @@ const SignIn: React.FC = () => {
               marginVertical={10}
               autoCompleteType='off'
               autoCapitalize='none'
+              keyboardType={'email-address'}
               fontWeight={'200'}
-              underlineColorAndroid='#fff'
               placeholder={'usuário/email'}
-              value={username_email}
-              onChangeText={setUsername_email} />
+              value={email}
+              onChangeText={setEmail} />
             <PetsTextInput
               marginVertical={10}
               autoCompleteType='off'
@@ -64,8 +67,8 @@ const SignIn: React.FC = () => {
               secureTextEntry={true}
               value={pass}
               onChangeText={setPass}
-              onSubmitEditing={() => handleSigIn()} />
-            <PetMainButton marginBottom={10} tittle='entrar' onPress={() => handleSigIn()} />
+              onSubmitEditing={() => handleSignIn()} />
+            <PetMainButton marginBottom={10} tittle='entrar' onPress={() => handleSignIn()} />
             <View style={{ elevation: 3, backgroundColor: '#FF8637', paddingHorizontal: 4 }}>
               <Text style={{ color: 'white', fontFamily: 'Quicksand-Bold' }}>Entrar com</Text>
             </View>

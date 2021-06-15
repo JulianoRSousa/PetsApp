@@ -5,10 +5,11 @@ interface Response {
   auth: boolean;
   user?: {
     id?: string;
+    email?: string;
     username?: string;
     firstname?: string;
     lastname?: string;
-    male: boolean | null;
+    birthdate?: string;
     profilePictureUrl?: string;
     followersCount?: number;
     postsCount?: number;
@@ -16,7 +17,7 @@ interface Response {
   };
 }
 
-export async function signIn(username, pass): Promise<Response> {
+export async function signIn(email, pass): Promise<Response> {
   let createAuthPromise;
   await api
     .post(
@@ -24,7 +25,7 @@ export async function signIn(username, pass): Promise<Response> {
       {},
       {
         headers: {
-          username: username,
+          email: email,
           pass: pass,
         },
       },
@@ -36,10 +37,11 @@ export async function signIn(username, pass): Promise<Response> {
           auth: Res.data.auth,
           user: {
             id: Res.data.user._id,
+            email: Res.data.user.email,
             username: Res.data.user.username,
             firstname: Res.data.user.firstName,
             lastname: Res.data.user.lastName,
-            male: Res.data.user.male,
+            birthdate: Res.data.user.birthdate,
             profilePictureUrl: Res.data.user.picture_url,
             followersCount: 188,
             postsCount: 4,

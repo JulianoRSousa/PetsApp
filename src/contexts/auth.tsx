@@ -5,10 +5,11 @@ import api from '../services/api';
 
 interface User {
   id?: string | undefined;
+  email?: string;
   username?: string;
   firstname?: string;
   lastname?: string;
-  male: boolean | null;
+  birthdate?: string;
   profilePictureUrl?: string;
   followersCount?: number;
   postsCount?: number;
@@ -19,7 +20,7 @@ interface AuthContextData {
   signed: boolean;
   user: User | null | undefined;
   loading: boolean;
-  signIn(username: string, pass: string): Promise<void>;
+  signIn(email: string, pass: string): Promise<void>;
   signOut(): void;
 }
 
@@ -46,9 +47,9 @@ const AuthProvider: React.FC = ({ children }) => {
     loadStorageData();
   }, []);
 
-  async function signIn(username, pass) {
+  async function signIn(email, pass) {
     try {
-      const response = await auth.signIn(username, pass);
+      const response = await auth.signIn(email, pass);
     setUser(response.user);
 
     api.defaults.headers.Authorization = `Baerer ${response.token}`;
@@ -58,13 +59,13 @@ const AuthProvider: React.FC = ({ children }) => {
     } catch (error) {
       console.log(error)
     }
-    
   }
 
   async function signOut() {
     await AsyncStorage.clear();
     setUser(null);
   }
+
 
   return (
     <AuthContext.Provider

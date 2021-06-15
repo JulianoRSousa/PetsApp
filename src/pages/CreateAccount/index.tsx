@@ -1,16 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import { ImageBackground, View, Text, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from "react";
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity, Dimensions, Alert } from 'react-native';
 import { useAuth } from "../../contexts/auth";
 import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
-import { useNavigation } from '@react-navigation/native';
 import * as AppColors from '../../assets/Colors';
 import PetsButton from "../../components/PetsMainButton";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';
 import { PetsInputTextViewMinor } from "./styles";
-
+import signUp from "../../controllers/userController";
 
 
 
@@ -18,25 +17,51 @@ const CreateAccount: React.FC = () => {
 
   NavigationBar.setColor('#ff8637')
 
-  const heightScreen = Dimensions.get("window").height;
-  const widthScreen = Dimensions.get("window").width;
+  const { signIn } = useAuth();
   const [fullName, setFullName] = useState('');
-  const [bDate, setBDate] = useState('');
-  const [selectedGender, setSelectedGender] = useState('');
   const [email, setEmail] = useState('');
+  const [birthdate, setBirthdate] = useState('');
   const [pass, setPass] = useState('');
   const [repeatPass, setRepeatPass] = useState('');
   const [termsCheckBox, setTermsCheckBox] = useState(false)
 
   const height = Dimensions.get('screen').height;
 
-  const bDate_ref= useRef(null);
-  const email_ref = useRef(null);
-  const pass_ref = useRef(null);
-  const repeatPass_ref = useRef(null);
-  const terms_ref = useRef(null);
+  async function handleSignIn() {
+    await signIn(email, pass)
+  }
 
-  const [ secured, setSecured ] = useState<boolean>(true)
+  async function handleSubmit(email, fullname, birthdate, pass) {
+    if (pass == repeatPass) {
+      if (String(pass).length > 5) {
+        if (!termsCheckBox) {
+          Alert.alert('Termos e condições', 'Para criar uma conta é necessario aceitar os termos e condições')
+        } else {
+          try {
+            await signUp(email, fullname, birthdate, pass)
+              .then(async Res => {
+                if (Res.status == 201) {
+                  Alert.alert('Olá!', 'Conta criada com sucesso!', [
+                    { text: "OK", onPress: () => handleSignIn() }
+                  ]);
+                  console.log(email, ' + ', pass)
+                  return
+                } else if (Res.status == 202) {
+                  Alert.alert('Email invalido', 'Este email já está cadastrado!');
+                }
+              });
+          } catch (error) {
+            Alert.alert('Error', error.message);
+            console.log('errinho:  ', error)
+          }
+        }
+      } else {
+        Alert.alert('Senha muito curta', 'Informe uma senha com pelo menos 6 digitos')
+      }
+    } else {
+      Alert.alert('Senha não confere', 'Repita a senha corretamente')
+    }
+  }
 
   return (
     <View style={{ backgroundColor: '#ff8637' }}>
@@ -68,7 +93,7 @@ const CreateAccount: React.FC = () => {
           color: AppColors.light
         }}
         >CADASTRE-SE</Text>
-         <PetsInputTextViewMinor>
+        <PetsInputTextViewMinor>
           <TextInputMask
             style={{
               width: '97%',
@@ -93,7 +118,6 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-          ref={bDate_ref}
             style={{
               width: '97%',
               height: '84%',
@@ -108,16 +132,15 @@ const CreateAccount: React.FC = () => {
             options={{
               format: 'DD/MM/YYYY',
             }}
-            value={bDate}
+            value={birthdate}
             keyboardType={'numeric'}
             onChangeText={text => {
-              setBDate(text)
+              setBirthdate(text)
             }}
           />
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-          ref={email_ref}
             style={{
               width: '97%',
               height: '84%',
@@ -134,6 +157,7 @@ const CreateAccount: React.FC = () => {
             }}
             value={email}
             keyboardType={'email-address'}
+            autoCapitalize={'none'}
             onChangeText={text => {
               setEmail(text)
             }}
@@ -141,7 +165,6 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-          ref={pass_ref}
             style={{
               width: '97%',
               height: '84%',
@@ -158,7 +181,7 @@ const CreateAccount: React.FC = () => {
               mask: '************************************************',
             }}
             keyboardType={'default'}
-            secureTextEntry={secured}
+            secureTextEntry={true}
             value={pass}
             onChangeText={text => {
               setPass(text)
@@ -191,7 +214,7 @@ const CreateAccount: React.FC = () => {
           />
         </PetsInputTextViewMinor>
 
-        <View  style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <BouncyCheckbox
             size={18}
             fillColor="#0eeb50ac"
@@ -202,7 +225,7 @@ const CreateAccount: React.FC = () => {
             useNativeDriver={true}
           /><Text style={{ fontSize: 9, color: AppColors.light }}>li e aceito os termos e condições disponíveis neste link</Text>
         </View>
-        <PetsButton marginTop={7} tittle={'criar conta'} onPress={() => { }} />
+        <PetsButton marginTop={7} tittle={'criar conta'} onPress={() => handleSubmit(email, fullName, birthdate, pass)} />
         <Text style={{ marginVertical: 7, color: AppColors.light }}>ou</Text>
         <View style={{ marginBottom: 8, elevation: 10, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
           <Text style={{ color: AppColors.light }}>Criar conta com </Text>
