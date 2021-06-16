@@ -10,8 +10,10 @@ const Friends: React.FC = () => {
 
   const [tags, setTags] = useState('');
   const [resultSearch, setResultSearch] = useState<any>(null);
+  const [searched, setSearched] = useState(false)
 
   async function Search() {
+    !searched ? setSearched(true) : console.log('Go == false')
     await api.get('/searchFriends', {
       headers: {
         tags: tags,
@@ -27,20 +29,9 @@ const Friends: React.FC = () => {
     })
   }
 
-
-  return (
-    <View style={{ backgroundColor: '#ff8637', flex: 1 }}>
-      <View style={{ alignSelf: 'center', borderTopEndRadius: 20, borderTopStartRadius: 20, height: '10%', width: '90%', flexDirection: 'row', backgroundColor: '#fff' }}>
-        <TextInput style={{ paddingHorizontal: 25, width: '90%', }}
-          value={tags}
-          onChangeText={setTags}
-          placeholder={'Buscar Amigos'}
-          onSubmitEditing={() => Search()}></TextInput>
-        <TouchableOpacity style={{ height: 50, width: 50, alignSelf: 'center', borderRadius: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35a' }} onPress={() => Search()}>
-          <Text style={{ borderRadius: 50, color: '#fff' }}>Go</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flex: 1, width: '90%', alignSelf: 'center', borderRadius: 50, justifyContent:'flex-start' }}>
+  function resultView(){
+    if(resultSearch.length){
+      return(
         <FlatList
           data={resultSearch}
           keyExtractor={item => item._id}
@@ -71,13 +62,31 @@ const Friends: React.FC = () => {
             </TouchableOpacity>
           )}
         />
-        <View style={{ 
-        alignSelf: 'center', 
-        borderTopEndRadius: 20, 
-        borderTopStartRadius: 20, 
-        height: '10%', 
-        width: '90%', 
-        backgroundColor: '#fff' }}/>
+      )
+    } else {
+      return(
+        <View style={{ flex: 1, width: '100%', alignSelf: 'center', borderRadius: 50, justifyContent: 'flex-start' }}>
+        { searched ? <Text>Nenhum Resultado encontrado</Text> : <View/>}
+        </View>
+      )
+    }
+  }
+
+
+  return (
+    <View style={{ backgroundColor: '#ff8637', flex: 1 }}>
+      <View style={{ alignSelf: 'center', borderTopEndRadius: 20, borderTopStartRadius: 20, height: '10%', width: '90%', flexDirection: 'row', backgroundColor: '#fff' }}>
+        <TextInput style={{ paddingHorizontal: 25, width: '82%', }}
+          value={tags}
+          onChangeText={text => { setTags(text), Search()}}
+          placeholder={'Buscar Amigos'}
+          onSubmitEditing={() => Search()}></TextInput>
+        <TouchableOpacity style={{ height: 50, width: 50, alignSelf: 'center', borderRadius: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35a' }} onPress={() => Search()}>
+          <Text style={{ borderRadius: 50, color: '#fff' }}>Go</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1, width: '90%', alignSelf: 'center', borderRadius: 50, justifyContent: 'flex-start' }}>
+        {resultView()}
       </View>
     </View>
   );
