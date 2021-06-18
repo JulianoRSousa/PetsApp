@@ -56,9 +56,10 @@ const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, margi
                 backgroundColor: backgroundColor ? backgroundColor : '#D5702E',
                 width: width ? (widthScreen * width ) : (widthScreen * 0.7463) ,
                 height: height ? ( heightScreen * height ) : (heightScreen * 0.0843),
-                elevation: 8,
+                elevation: 6,
                 alignContent:'center',
                 justifyContent:'center',
+                borderRadius:10,
             }}
         >
             <TextInput
@@ -89,6 +90,7 @@ const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, margi
                     alignSelf:'center',
                     elevation:5,
                     fontWeight: fontWeight ? fontWeight : 'normal',
+                    borderRadius:10
                 }}
             ></TextInput>
         </View>

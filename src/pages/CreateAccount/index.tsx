@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { ImageBackground, View, Text, StatusBar, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import {
+  ImageBackground,
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+  Dimensions,
+  Alert,
+  Image,
+  Platform,
+  PermissionsAndroid
+} from 'react-native';
 import { useAuth } from "../../contexts/auth";
-import IconMaterial from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
 import * as AppColors from '../../assets/Colors';
@@ -10,6 +20,8 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';
 import { PetsInputTextViewMinor } from "./styles";
 import signUp from "../../controllers/userController";
+import Geolocation from '@react-native-community/geolocation';
+
 
 
 
@@ -23,12 +35,63 @@ const CreateAccount: React.FC = () => {
   const [birthdate, setBirthdate] = useState('');
   const [pass, setPass] = useState('');
   const [repeatPass, setRepeatPass] = useState('');
+  const [latitude, setLatitude] = useState('-11,8608');
+  const [longitude, setLongitude] = useState('-55,5095');
   const [termsCheckBox, setTermsCheckBox] = useState(false)
+  const [watchID, setWatchID] = useState(0);
+
 
   const height = Dimensions.get('screen').height;
 
+  const callLocation = () => {
+    if (Platform.OS === 'ios') {
+      getLocation();
+    } else {
+      const requestLocationPermission = async () => {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: "Permissão de Acesso à Localização",
+            message: "Precisamos de sua localização para a listagem de pets proximos a você",
+            buttonNeutral: "Pergunte-me depois",
+            buttonNegative: "Não permitir",
+            buttonPositive: "OK"
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          await getLocation();
+          Alert.alert('Um instante', 'Estamos Criando sua conta');
+        } else {
+          Alert.alert('Permissão de Localização negada');
+        }
+      };
+      requestLocationPermission();
+    }
+  }
+
+  const getLocation = () => {
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = JSON.stringify(position.coords.latitude);
+        const longitude = JSON.stringify(position.coords.longitude);
+        setLatitude(latitude);
+        setLongitude(longitude);
+      },
+      (error) => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+    const watchID = Geolocation.watchPosition((position) => {
+      const latitude = JSON.stringify(position.coords.latitude);
+      const longitude = JSON.stringify(position.coords.longitude);
+      setLatitude(latitude);
+      setLongitude(longitude);
+    });
+    setWatchID(watchID);
+  }
+
   async function handleSignIn() {
     await signIn(email, pass)
+    Geolocation.clearWatch(watchID);
   }
 
   async function handleSubmit(email, fullname, birthdate, pass) {
@@ -38,7 +101,8 @@ const CreateAccount: React.FC = () => {
           Alert.alert('Termos e condições', 'Para criar uma conta é necessario aceitar os termos e condições')
         } else {
           try {
-            await signUp(email, fullname, birthdate, pass)
+            await callLocation()
+            await signUp(email, fullname, birthdate, pass, latitude, longitude)
               .then(async Res => {
                 if (Res.status == 201) {
                   Alert.alert('Olá!', 'Conta criada com sucesso!', [
@@ -83,14 +147,17 @@ const CreateAccount: React.FC = () => {
           <Text style={{ fontFamily: 'SomethingRegular', color: AppColors.light, fontSize: 90, }}>pets</Text>
         </View>
         <Text style={{
-          width: '73%',
-          paddingBottom: 10,
+          width: '100%',
+          height: '7%',
+          marginVertical: 5,
           alignSelf: 'center',
           backgroundColor: '#F9A862',
           fontFamily: 'Quicksand-Regular',
           textAlign: 'center',
+          textAlignVertical: 'center',
           fontSize: 30,
-          color: AppColors.light
+          color: AppColors.light,
+          elevation: 8,
         }}
         >CADASTRE-SE</Text>
         <PetsInputTextViewMinor>
@@ -101,7 +168,8 @@ const CreateAccount: React.FC = () => {
               backgroundColor: 'white',
               fontSize: 16,
               fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont
+              color: AppColors.darkLightfont,
+              borderRadius: 8,
             }}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
@@ -124,7 +192,8 @@ const CreateAccount: React.FC = () => {
               backgroundColor: 'white',
               fontSize: 16,
               fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont
+              color: AppColors.darkLightfont,
+              borderRadius: 8,
             }}
             placeholderTextColor={AppColors.darkLightfont}
             type='datetime'
@@ -147,7 +216,8 @@ const CreateAccount: React.FC = () => {
               backgroundColor: 'white',
               fontSize: 16,
               fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont
+              color: AppColors.darkLightfont,
+              borderRadius: 8,
             }}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
@@ -172,7 +242,8 @@ const CreateAccount: React.FC = () => {
               fontSize: 16,
               fontFamily: "Quicksand-Light",
               fontWeight: '100',
-              color: AppColors.darkLightfont
+              color: AppColors.darkLightfont,
+              borderRadius: 8,
             }}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
@@ -197,7 +268,8 @@ const CreateAccount: React.FC = () => {
               fontSize: 16,
               fontFamily: "Quicksand-Light",
               fontWeight: '200',
-              color: AppColors.darkLightfont
+              color: AppColors.darkLightfont,
+              borderRadius: 8,
             }}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
@@ -230,12 +302,12 @@ const CreateAccount: React.FC = () => {
         <View style={{ marginBottom: 8, elevation: 10, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
           <Text style={{ color: AppColors.light }}>Criar conta com </Text>
         </View>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity style={{ paddingHorizontal: 5 }}>
-            <IconMaterial name='google' color={'#FF4B26'} size={35} />
+        <View style={{ flexDirection: 'row', padding: 4 }}>
+          <TouchableOpacity style={{ padding: 2 }}>
+            <Image source={require('../../assets/images/Icon_google.png')} style={{ height: 28, width: 28, resizeMode: 'stretch' }} />
           </TouchableOpacity>
-          <TouchableOpacity style={{ paddingHorizontal: 5 }}>
-            <IconIonicons name='logo-facebook' color={'#475993'} size={35} />
+          <TouchableOpacity>
+            <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
           </TouchableOpacity>
         </View>
       </ImageBackground>

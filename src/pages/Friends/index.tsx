@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Button, TextInput, FlatList, Image, TouchableOpacity, } from "react-native";
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
+import Crashes from 'appcenter-crashes';
 
 
 const Friends: React.FC = () => {

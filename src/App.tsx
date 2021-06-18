@@ -58,6 +58,6 @@ const App: React.FC = () => {
 };
 
 export default codePush({
-  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
   installMode: codePush.InstallMode.IMMEDIATE
 })(App);

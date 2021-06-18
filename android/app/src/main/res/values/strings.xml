@@ -2,5 +2,5 @@
     <string name="app_name">Pets</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">wDn9BjTdCf18Fq7h5xsi_2WsuoT9x_5NZT4Zj</string>
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
-    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ENABLE_IN_JS</string>
 </resources>

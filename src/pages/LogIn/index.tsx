@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { ImageBackground, View, Text, StatusBar, TouchableOpacity, Image } from 'react-native';
 import PetsTextInput from '../../components/PetsTextInput';
 import { useAuth } from "../../contexts/auth";
 import PetMainButton from '../../components/PetsMainButton';
@@ -46,7 +46,7 @@ const SignIn: React.FC = () => {
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <StatusBar backgroundColor={'#fff0'} translucent={true} />
-          <Text allowFontScaling={true} style={{ color: 'white', fontFamily: 'SomethingRegular', fontSize: 168 }}>pets</Text>
+          <Text allowFontScaling={true} style={{alignSelf:'center', width:'71.63%', color: 'white', fontFamily: 'SomethingRegular', textAlignVertical:'center', textAlign:'center', fontSize: 160 }}>pets</Text>
 
           <View style={{ alignItems: 'center', justifyContent: 'center', height: '60%' }}>
             <PetsTextInput
@@ -69,12 +69,12 @@ const SignIn: React.FC = () => {
               onChangeText={setPass}
               onSubmitEditing={() => handleSignIn()} />
             <PetMainButton marginBottom={10} tittle='entrar' onPress={() => handleSignIn()} />
-            <View style={{ elevation: 3, backgroundColor: '#FF8637', paddingHorizontal: 4 }}>
+            <View style={{ elevation: 3, backgroundColor: '#E07630', paddingHorizontal: 4 }}>
               <Text style={{ color: 'white', fontFamily: 'Quicksand-Bold' }}>Entrar com</Text>
             </View>
-            <View style={{ flexDirection: 'row' }}>
-              <TouchableOpacity>
-                <IconMaterial name='google' color={'#FF4B26'} size={30} />
+            <View style={{ flexDirection: 'row', padding:4}}>
+              <TouchableOpacity style={{padding:2}}>
+                <Image source={require('../../assets/images/Icon_google.png')} style={{height:28, width:28, resizeMode:'stretch'}}/>
               </TouchableOpacity>
               <TouchableOpacity>
                 <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
@@ -84,8 +84,6 @@ const SignIn: React.FC = () => {
               padding={8}
               marginTop={20}
               fontSize={16}
-              width={0.352}
-              height={0.0625}
               tittle='criar conta'
               onPress={() => navigation.navigate("CreateAccount")} />
           </View>

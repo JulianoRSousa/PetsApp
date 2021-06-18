@@ -24,6 +24,8 @@ export default async function signUp(
   fullname,
   birthdate,
   pass,
+  latitude,
+  longitude,
 ): Promise <AxiosResponse<any>> {
   const createLogin = await api.post(
     "/createLogin",
@@ -34,6 +36,8 @@ export default async function signUp(
         fullname: fullname,
         birthDate: birthdate,
         pass: pass,
+        latitude: latitude,
+        longitude: longitude,
       },
     },
   );

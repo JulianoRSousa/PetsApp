@@ -26,7 +26,8 @@ export const PetsInputTextViewMinor = styled.View`
   width: 75%;
   height: 7%;
   margin-top: 2px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  border-radius: 10px;
 `;
 export const PetsTextInputMinor = styled.TextInput`
   background-color: ${AppColors.light};
@@ -35,4 +36,5 @@ export const PetsTextInputMinor = styled.TextInput`
   font-size: 16px;
   font-family: "Quicksand-Regular";
   color: ${AppColors.darkLightfont};
+  border-radius: 10px;
 `;
