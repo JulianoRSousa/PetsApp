@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Button, TextInput, FlatList, Image, TouchableOpacity, } from "react-native";
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
-import Crashes from 'appcenter-crashes';
-
+import style from "../Friends/styles";
+import * as AppColors from '../../assets/Colors';
 
 const Friends: React.FC = () => {
 
@@ -36,43 +36,21 @@ const Friends: React.FC = () => {
         <View>
           <FlatList
             data={resultSearch}
-            ListHeaderComponent={<View style={{
-              height: 20, borderTopStartRadius: 50, borderTopEndRadius: 50,
-              backgroundColor: '#333d'
-            }}></View>}
-            ListFooterComponent={<View style={{
-              height: 20, borderBottomStartRadius: 50, borderBottomEndRadius: 50,
-              backgroundColor: '#333d'
-            }}></View>}
+            style={style.flatList}
             keyExtractor={item => item._id}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => OpenUserProfile(item._id)} style={{
-                alignItems: 'center',
-                flexDirection: 'row', width: "100%",
-                backgroundColor: '#333d',
-                borderBottomWidth: 1,
-                borderTopWidth: 1,
-                borderColor: '#3338'
-              }}>
+              <TouchableOpacity onPress={() => OpenUserProfile(item._id)}
+                style={style.flatListComponent}>
                 <Image
                   source={{ uri: item.picture_url }}
-                  style={{ resizeMode: 'contain', height: 50, width: 50, borderRadius: 50, margin: 8 }}
+                  style={style.imageSearchUser}
                 />
-                <View>
+                <View style={{ justifyContent: 'flex-start' }}>
                   <Text
-                    style={{
-                      color: 'white',
-                      fontSize: 15,
-                      marginHorizontal: 10,
-                    }}>{' ' + String(item.firstName) + ' ' + item.lastName}
+                    style={style.textH3}>{' ' + String(item.firstName) + ' ' + item.lastName}
                   </Text>
                   <Text
-                    style={{
-                      color: 'white',
-                      fontSize: 12,
-                      marginHorizontal: 10,
-                      marginVertical: 5,
-                    }}>
+                    style={style.textH5black}>
                     {' @' + item.username}
                   </Text>
                 </View>
@@ -83,8 +61,14 @@ const Friends: React.FC = () => {
       )
     } else {
       return (
-        <View style={{ flex: 1, width: '100%', alignSelf: 'center', borderRadius: 50, justifyContent: 'flex-start' }}>
-          {searched ? <Text style={{marginVertical: 50 ,alignSelf:'center', fontSize: 14}}>Nenhum Resultado encontrado</Text> : <View />}
+        <View style={style.viewNotFoundUser}>
+          {searched ? <View style={style.viewNotFoundUser2}>
+            <Text style={style.textH4black}>Nenhum Resultado encontrado</Text>
+            <Image source={require('../../assets/images/notFound.png')}
+              style={style.imageNotFound} />
+            <Text style={style.textH4white}>Que tal tentar de novo?</Text>
+
+          </View> : <View />}
         </View>
       )
     }
@@ -92,24 +76,15 @@ const Friends: React.FC = () => {
 
 
   return (
-    <View style={{ backgroundColor: '#ff8637', flex: 1 }}>
-      <View style={{ alignSelf: 'center', borderRadius: 50, height: '10%', width: '90%', flexDirection: 'row', backgroundColor: '#fff' }}>
-        <TextInput style={{ paddingHorizontal: 25, width: '84%', }}
+    <View style={{ backgroundColor: AppColors.base, flex: 1 }}>
+      <View style={style.viewSearchBar}>
+        <TextInput style={style.textInputSearchBar}
           value={tags}
           onChangeText={text => { setTags(text), Search(text) }}
-          placeholder={'Buscar Amigos'}
+          placeholder={'buscar Amigos'}
           onSubmitEditing={() => Search(tags)}></TextInput>
-        <TouchableOpacity style={{ height: 50, 
-          width: 50, 
-          alignSelf: 'center', 
-          borderRadius: 50, 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          backgroundColor: '#35a' }} onPress={() => Search(tags)}>
-          <Text style={{ borderRadius: 50, color: '#fff' }}>Go</Text>
-        </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, width: '90%', alignSelf: 'center', borderRadius: 50, justifyContent: 'flex-start' }}>
+      <View style={style.viewSearchField}>
         {resultView()}
       </View>
     </View>
