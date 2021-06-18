@@ -9,7 +9,7 @@ import {
   Alert,
   Image,
   Platform,
-  PermissionsAndroid
+  PermissionsAndroid,
 } from 'react-native';
 import { useAuth } from "../../contexts/auth";
 import IconIonicons from 'react-native-vector-icons/Ionicons';
@@ -18,7 +18,7 @@ import * as AppColors from '../../assets/Colors';
 import PetsButton from "../../components/PetsMainButton";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';
-import { PetsInputTextViewMinor } from "./styles";
+import style, { PetsInputTextViewMinor } from "./styles";
 import signUp from "../../controllers/userController";
 import Geolocation from '@react-native-community/geolocation';
 
@@ -27,7 +27,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 const CreateAccount: React.FC = () => {
 
-  NavigationBar.setColor('#ff8637')
+  NavigationBar.setColor(AppColors.base)
 
   const { signIn } = useAuth();
   const [fullName, setFullName] = useState('');
@@ -41,7 +41,8 @@ const CreateAccount: React.FC = () => {
   const [watchID, setWatchID] = useState(0);
 
 
-  const height = Dimensions.get('screen').height;
+
+  const rem = (Dimensions.get('window').width) / 380;
 
   const callLocation = () => {
     if (Platform.OS === 'ios') {
@@ -127,50 +128,24 @@ const CreateAccount: React.FC = () => {
     }
   }
 
+
+
+
   return (
-    <View style={{ backgroundColor: '#ff8637' }}>
-      <ImageBackground source={require('../../assets/images/LoginBackImage.png')}
+    <View style={{ backgroundColor: AppColors.base }}>
+      <ImageBackground
+        source={require('../../assets/images/backgroundImage.png')}
         resizeMode="stretch"
-        style={{ height: height, justifyContent: "center", alignItems: 'center' }}>
-        <StatusBar backgroundColor={'#fff0'} translucent={true} />
-        <ImageBackground source={require('../../assets/images/Paws.png')}
-          resizeMode="cover"
-          style={{
-            position: 'absolute',
-            top: 0,
-            height: '50%',
-            width: '100%',
-            justifyContent: "center",
-          }}>
-        </ImageBackground>
+        style={style.backgroundImage}>
+        <StatusBar backgroundColor={AppColors.transparent} translucent={true} />
         <View style={{ alignItems: 'center', justifyContent: 'center' }} >
-          <Text style={{ fontFamily: 'SomethingRegular', color: AppColors.light, fontSize: 90, }}>pets</Text>
+          <Text style={style.textLogo}>pets</Text>
         </View>
-        <Text style={{
-          width: '100%',
-          height: '7%',
-          marginVertical: 5,
-          alignSelf: 'center',
-          backgroundColor: '#F9A862',
-          fontFamily: 'Quicksand-Regular',
-          textAlign: 'center',
-          textAlignVertical: 'center',
-          fontSize: 30,
-          color: AppColors.light,
-          elevation: 8,
-        }}
+        <Text style={style.textH2}
         >CADASTRE-SE</Text>
         <PetsInputTextViewMinor>
           <TextInputMask
-            style={{
-              width: '97%',
-              height: '84%',
-              backgroundColor: 'white',
-              fontSize: 16,
-              fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont,
-              borderRadius: 8,
-            }}
+            style={style.textInputMask}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
             placeholder={'nome completo'}
@@ -186,15 +161,7 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-            style={{
-              width: '97%',
-              height: '84%',
-              backgroundColor: 'white',
-              fontSize: 16,
-              fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont,
-              borderRadius: 8,
-            }}
+            style={style.textInputMask}
             placeholderTextColor={AppColors.darkLightfont}
             type='datetime'
             placeholder={'data de nascimento'}
@@ -210,15 +177,7 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-            style={{
-              width: '97%',
-              height: '84%',
-              backgroundColor: 'white',
-              fontSize: 16,
-              fontFamily: "Quicksand-Light",
-              color: AppColors.darkLightfont,
-              borderRadius: 8,
-            }}
+            style={style.textInputMask}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
             placeholder={'email'}
@@ -235,16 +194,7 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-            style={{
-              width: '97%',
-              height: '84%',
-              backgroundColor: 'white',
-              fontSize: 16,
-              fontFamily: "Quicksand-Light",
-              fontWeight: '100',
-              color: AppColors.darkLightfont,
-              borderRadius: 8,
-            }}
+            style={style.textInputMask}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
             placeholder={'senha'}
@@ -261,16 +211,7 @@ const CreateAccount: React.FC = () => {
         </PetsInputTextViewMinor>
         <PetsInputTextViewMinor>
           <TextInputMask
-            style={{
-              width: '97%',
-              height: '84%',
-              backgroundColor: 'white',
-              fontSize: 16,
-              fontFamily: "Quicksand-Light",
-              fontWeight: '200',
-              color: AppColors.darkLightfont,
-              borderRadius: 8,
-            }}
+            style={style.textInputMask}
             placeholderTextColor={AppColors.darkLightfont}
             type='custom'
             placeholder={'repita a senha'}
@@ -288,26 +229,36 @@ const CreateAccount: React.FC = () => {
 
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <BouncyCheckbox
-            size={18}
+            size={18 * rem}
             fillColor="#0eeb50ac"
             unfillColor="#fff"
             iconStyle={{ borderColor: AppColors.baseLight }}
             textStyle={{ fontFamily: "SomethingRegular" }}
             onPress={() => setTermsCheckBox(!termsCheckBox)}
             useNativeDriver={true}
-          /><Text style={{ fontSize: 9, color: AppColors.light }}>li e aceito os termos e condições disponíveis neste link</Text>
+          />
+          <TouchableOpacity>
+            <Text style={style.textH5}>
+              li e aceito os termos e condições disponíveis neste link
+            </Text>
+          </TouchableOpacity>
         </View>
-        <PetsButton marginTop={7} tittle={'criar conta'} onPress={() => handleSubmit(email, fullName, birthdate, pass)} />
-        <Text style={{ marginVertical: 7, color: AppColors.light }}>ou</Text>
-        <View style={{ marginBottom: 8, elevation: 10, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+        <PetsButton marginTop={7 * rem}
+          tittle={'criar conta'}
+          onPress={() => handleSubmit(email, fullName, birthdate, pass)} />
+        <Text style={style.textH4}>ou</Text>
+        <View style={{ marginBottom: 8 * rem, elevation: 10 * rem, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
           <Text style={{ color: AppColors.light }}>Criar conta com </Text>
         </View>
-        <View style={{ flexDirection: 'row', padding: 4 }}>
-          <TouchableOpacity style={{ padding: 2 }}>
-            <Image source={require('../../assets/images/Icon_google.png')} style={{ height: 28, width: 28, resizeMode: 'stretch' }} />
+        <View style={{ flexDirection: 'row', padding: 4 * rem }}>
+          <TouchableOpacity style={{ padding: 2 * rem }}>
+            <Image source={require('../../assets/images/Icon_google.png')}
+              style={style.iconImage} />
           </TouchableOpacity>
           <TouchableOpacity>
-            <IconIonicons name='logo-facebook' color={'#475993'} size={30} />
+            <IconIonicons name='logo-facebook'
+              color={AppColors.darkBlue}
+              size={32 * rem} />
           </TouchableOpacity>
         </View>
       </ImageBackground>

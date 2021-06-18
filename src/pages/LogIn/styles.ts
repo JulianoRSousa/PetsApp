@@ -78,7 +78,7 @@ const style = StyleSheet.create({
   textLogo: {
     fontFamily: "SomethingRegular",
     color: AppColors.light,
-    fontSize: 90 * rem,
+    fontSize: 168 * rem,
   },
   textInputMask: {
     width: "97%",
