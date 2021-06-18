@@ -76,7 +76,7 @@ const Friends: React.FC = () => {
 
 
   return (
-    <View style={{ backgroundColor: AppColors.base, flex: 1 }}>
+    <View style={{ backgroundColor: AppColors.base2, flex: 1 }}>
       <View style={style.viewSearchBar}>
         <TextInput style={style.textInputSearchBar}
           value={tags}
