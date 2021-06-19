@@ -28,7 +28,7 @@ const TabRoutes: React.FC = () => (
 const FriendsRoutes: React.FC = () => (
   <Stack.Navigator>
     <Stack.Screen name="Friends" component={Friends} options={{ header: () => <PetsHeader /> }} />
-    <Stack.Screen name="UserProfile" component={UserProfile} options={{ title: 'Buscar', headerTintColor:'#fff', headerStyle:{backgroundColor:'#ff8637'} }} />
+    <Stack.Screen name="UserProfile" component={UserProfile} options={{headerShown:false}}/>
   </Stack.Navigator>
 );
 

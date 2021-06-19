@@ -15,9 +15,9 @@ const MainHeader: React.FC = () => {
 
     return (
         <View style={{ flex:1, maxHeight: height * .078, maxWidth: width, backgroundColor: AppColors.base }}>
-            <StatusBar backgroundColor={AppColors.base} />
+            <StatusBar backgroundColor={AppColors.base2} />
             <View style={{
-                backgroundColor: AppColors.base, alignSelf: 'flex-end', justifyContent: 'center',
+                backgroundColor: AppColors.base2, alignSelf: 'flex-end', justifyContent: 'center',
                 maxHeight: 150, maxWidth: 150, height: height *.09,
             }}>
                 <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} style={{ backgroundColor: 'white', height: 50, width: 50 }}>

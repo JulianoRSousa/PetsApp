@@ -4,6 +4,7 @@ import * as AppColors from '../../assets/Colors';
 import Routes from "../../routes";
 import api from "../../services/api";
 import { useNavigation } from '@react-navigation/native';
+import PetsHeader from "../../components/PetsHeader";
 
 
 const width = Dimensions.get("window").width;
@@ -79,6 +80,7 @@ function UserProfile({ route, navigation }) {
 
   return (
     <View>
+      <PetsHeader/>
       <View style={style.container}>
         <StatusBar backgroundColor={AppColors.base} />
         <View style={style.imageContainer}>

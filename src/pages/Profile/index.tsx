@@ -1,7 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, Text, Button, StyleSheet, Alert, Platform, PermissionsAndroid } from "react-native";
-import { useAuth } from "../../contexts/auth";
-import { useNavigation } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
 const Profile: React.FC = () => {
@@ -10,7 +8,7 @@ const Profile: React.FC = () => {
   const [watchID, setWatchID] = useState(0);
 
   const callLocation = () => {
-    if(Platform.OS === 'ios') {
+    if (Platform.OS === 'ios') {
       getLocation();
     } else {
       const requestLocationPermission = async () => {
@@ -33,7 +31,7 @@ const Profile: React.FC = () => {
       requestLocationPermission();
     }
   }
-  
+
   const getLocation = () => {
     Geolocation.getCurrentPosition(
       (position) => {
@@ -60,7 +58,7 @@ const Profile: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style = {styles.boldText}>
+      <Text style={styles.boldText}>
         Você está Aqui
       </Text>
       <Text style={styles.text}>
@@ -70,10 +68,10 @@ const Profile: React.FC = () => {
         Longitude: {currentLongitude}
       </Text>
       <View style={styles.button}>
-        <Button title="Obter Localização" onPress={callLocation}/>
+        <Button title="Obter Localização" onPress={callLocation} />
       </View>
       <View style={styles.button}>
-        <Button title="Cancelar Monitoração" onPress={clearLocation}/>
+        <Button title="Cancelar Monitoração" onPress={clearLocation} />
       </View>
     </View>
   );
@@ -84,23 +82,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginTop: 50,
-    padding:16,
-    backgroundColor:'white',
+    padding: 16,
+    backgroundColor: 'white',
   },
   boldText: {
     fontSize: 30,
     color: 'red',
   },
-  text: {    
+  text: {
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginTop: 15,
   },
   button: {
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginTop: 15,
   }
 });
