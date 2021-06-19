@@ -60,10 +60,12 @@ const style = StyleSheet.create({
   textH4: {
     marginVertical: 7 * rem,
     color: AppColors.light,
+    fontSize: 12 * rem,
   },
   textH5: {
     fontSize: 10 * rem,
     color: AppColors.light,
+    fontFamily:'Quicksand-Regular',
   },
   iconImage: {
     height: 28*rem, 

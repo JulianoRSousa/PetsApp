@@ -87,6 +87,7 @@ const style = StyleSheet.create({
   textInputSearchBar: {
     fontFamily: "Quicksand-Regular",
     paddingHorizontal: 25 * rem,
+    fontSize: 16 * rem,
     width: "90%",
   },
   viewSearchField: {

@@ -245,10 +245,11 @@ const CreateAccount: React.FC = () => {
         </View>
         <PetsButton marginTop={7 * rem}
           tittle={'criar conta'}
+          fontSize={18 * rem}
           onPress={() => handleSubmit(email, fullName, birthdate, pass)} />
         <Text style={style.textH4}>ou</Text>
         <View style={{ marginBottom: 8 * rem, elevation: 10 * rem, backgroundColor: '#D5702E', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-          <Text style={{ color: AppColors.light }}>Criar conta com </Text>
+          <Text style={style.textH5}>Criar conta com </Text>
         </View>
         <View style={{ flexDirection: 'row', padding: 4 * rem }}>
           <TouchableOpacity style={{ padding: 2 * rem }}>

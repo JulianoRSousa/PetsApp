@@ -90,7 +90,8 @@ const SignIn: React.FC = () => {
               }}>
               <Text style={{
                 color: AppColors.lightText,
-                fontFamily: 'Quicksand-Bold'
+                fontFamily: 'Quicksand-Bold',
+                fontSize: 12 * rem
               }}>Entrar com</Text>
             </View>
             <View style={{ flexDirection: 'row', padding: 4 * rem }}>

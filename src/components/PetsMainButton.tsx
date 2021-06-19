@@ -18,6 +18,7 @@ interface Props {
 }
 
 const widthScreen = Dimensions.get("window").width;
+const rem = (Dimensions.get("window").width)/380
 const heightScreen = Dimensions.get("window").height;
 
 
@@ -33,11 +34,11 @@ const PetsButton: React.FC<Props> = ({ fontSize, padding, onPress, tittle, heigh
             marginTop: marginTop ? marginTop : 0,
             marginLeft: marginLeft ? marginLeft : 0,
             marginRight: marginRight ? marginRight : 0,
-            padding: padding ? padding : 10,
+            padding: padding ? padding : 10 * rem,
             backgroundColor: '#F9A862',
             alignItems:'center',
             justifyContent:'center',
-            borderRadius:10,
+            borderRadius:15 * rem,
             elevation:8,
             shadowColor:'#000',
         },
@@ -50,7 +51,7 @@ const PetsButton: React.FC<Props> = ({ fontSize, padding, onPress, tittle, heigh
         },
         text: {
             fontFamily: 'Quicksand-Bold',
-            fontSize: fontSize ? fontSize : 24,
+            fontSize: fontSize ? fontSize : 24 * rem,
             color: 'white',
             textAlignVertical:'center',
         }
