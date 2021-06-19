@@ -63,7 +63,7 @@ const Friends: React.FC = () => {
       return (
         <View style={style.viewNotFoundUser}>
           {searched ? <View style={style.viewNotFoundUser2}>
-            <Text style={style.textH4black}>Nenhum Resultado encontrado</Text>
+            <Text style={style.textH4black}>Nenhum resultado encontrado</Text>
             <Image source={require('../../assets/images/notFound.png')}
               style={style.imageNotFound} />
             <Text style={style.textH4white}>Que tal tentar de novo?</Text>
@@ -81,7 +81,7 @@ const Friends: React.FC = () => {
         <TextInput style={style.textInputSearchBar}
           value={tags}
           onChangeText={text => { setTags(text), Search(text) }}
-          placeholder={'buscar Amigos'}
+          placeholder={'buscar amigos'}
           onSubmitEditing={() => Search(tags)}></TextInput>
       </View>
       <View style={style.viewSearchField}>

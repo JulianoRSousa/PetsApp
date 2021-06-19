@@ -78,7 +78,7 @@ const style = StyleSheet.create({
   viewSearchBar: {
     alignSelf: "center",
     borderRadius: 20 * rem,
-    height: "8%",
+    height: 50 *rem,
     width: "70%",
     flexDirection: "row",
     backgroundColor: AppColors.light,
@@ -102,7 +102,7 @@ const style = StyleSheet.create({
     borderRadius: 20 * rem,
     backgroundColor: AppColors.baseMedium2,
     borderBottomWidth: 2 * rem,
-    borderTopWidth: 2 * rem,
+    
     borderColor: AppColors.baseMedium3,
   },
   flatList: {

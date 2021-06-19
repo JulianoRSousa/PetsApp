@@ -1,9 +1,9 @@
-export const base = '#ff8637'
+export const base = '#FF934D' //#ff8637
 export const base2 = '#FF934D'
 export const baseLight = '#FFE1CD'
 export const baseMedium = '#E07630'
 export const baseMedium2 = '#EB7E3A'
-export const baseMedium3 = '#E67E39'
+export const baseMedium3 = '#E07630' //#E67E39
 export const darkBase = '#D5702E'
 export const statusBar = '#ff8'
 export const white = '#efefef'
