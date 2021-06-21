@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as AppColors from '../../assets/strings/Colors';
 import * as AppStrings from '../../assets/strings/Strings';
 import style from '../LogIn/styles';
-import Lottie from 'lottie-react-native';
+import PetsModal from '../../components/PetsModal';
 
 
 
@@ -49,6 +49,7 @@ const SignIn: React.FC = () => {
       <ImageBackground source={require('../../assets/images/backgroundImage.png')}
         resizeMode="stretch"
         style={{ flex: 1, justifyContent: "center" }}>
+          <PetsModal  />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <StatusBar backgroundColor={AppColors.transparent}
             translucent={true} />

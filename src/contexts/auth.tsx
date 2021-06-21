@@ -59,6 +59,9 @@ const AuthProvider: React.FC = ({ children }) => {
       await AsyncStorage.setItem('@RNAuth:token', response.token);
     } catch (error) {
       console.log(error)
+      if(error.auth){
+        console.log('errorrr')
+      }
     }
     setLoading(false)
   }

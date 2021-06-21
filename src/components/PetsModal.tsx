@@ -6,8 +6,19 @@ import * as AppFonts from '../assets/strings/Fonts';
 import { BlurView } from "@react-native-community/blur";
 import NavigationBar from 'react-native-navbar-color';
 
+interface PetsButton {
+  tittle?: string;
+  visible?: boolean,
+  type?: 'OneButton' | 'TwoButtons';
+  message?: string;
+  mainButton?: string;
+  secondButton?: string
+  onPressOne?: Promise<void>
+  onPressTwo?: Promise<void>
+}
 
-const PetsModal: React.FC<any> = ({ visible, type, message }) => {
+
+const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainButton, secondButton }) => {
 
   const rem = (Dimensions.get('window').width) / 380;
   const [isVisible , setIsVisible] = useState(true)
@@ -18,7 +29,7 @@ const PetsModal: React.FC<any> = ({ visible, type, message }) => {
   
   function loadType(type){
     NavigationBar.setColor(AppColors.base)
-    if(type == 1){
+    if(type == 'OneButton'){
     return(
     <Modal
       animationType='fade'
@@ -103,14 +114,14 @@ const PetsModal: React.FC<any> = ({ visible, type, message }) => {
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>fechar</Text>
+              }}>{mainButton}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
     </Modal>
   )}
-  else if(type == 2){
+  else if(type == 'TwoButtons'){
     return(
       <Modal
       animationType='fade'
@@ -195,7 +206,7 @@ const PetsModal: React.FC<any> = ({ visible, type, message }) => {
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>fechar</Text>
+              }}>{mainButton}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -209,7 +220,7 @@ const PetsModal: React.FC<any> = ({ visible, type, message }) => {
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>fechar</Text>
+              }}>{secondButton}</Text>
             </TouchableOpacity>
             </View>
           </View>
