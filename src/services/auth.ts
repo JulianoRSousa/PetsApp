@@ -43,9 +43,9 @@ export async function signIn(email, pass): Promise<Response> {
             lastname: Res.data.user.lastName,
             birthdate: Res.data.user.birthdate,
             profilePictureUrl: Res.data.user.picture_url,
-            followersCount: 188,
-            postsCount: 4,
-            petsCount: 3,
+            followersCount: Res.data.user.followerList.length,
+            postsCount: Res.data.user.postList.length,
+            petsCount: Res.data.user.petList.length,
           },
         });
       });

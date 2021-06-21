@@ -20,7 +20,7 @@ interface AuthContextData {
   signed: boolean;
   user: User | null | undefined;
   loading: boolean;
-  signIn(email: string, pass: string): Promise<void>;
+  signIn(email: string, pass: string): Promise<any>;
   signOut(): void;
 }
 
@@ -52,18 +52,22 @@ const AuthProvider: React.FC = ({ children }) => {
     try {
       const response = await auth.signIn(email, pass);
       setUser(response.user);
-
       api.defaults.headers.Authorization = `Baerer ${response.token}`;
 
       await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
       await AsyncStorage.setItem('@RNAuth:token', response.token);
+      setLoading(false)
+
+      return response;
     } catch (error) {
       console.log(error)
-      if(error.auth){
-        console.log('errorrr')
+      if (error.auth) {
+        setLoading(false)
+        return null
       }
+      setLoading(false)
+      return error
     }
-    setLoading(false)
   }
 
   async function signOut() {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Modal, View, Dimensions, TouchableOpacity, Text, StatusBar } from 'react-native'
 
 import * as AppColors from '../assets/strings/Colors';
@@ -13,8 +13,8 @@ interface PetsButton {
   message?: string;
   mainButton?: string;
   secondButton?: string
-  onPressOne?: Promise<void>
-  onPressTwo?: Promise<void>
+  onPressOne?: Promise<void> | undefined | any;
+  onPressTwo?: Promise<void> | undefined | any;
 }
 
 
@@ -22,6 +22,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
 
   const rem = (Dimensions.get('window').width) / 380;
   const [isVisible , setIsVisible] = useState(true)
+  const valueVisible = createContext('valueVisible')
 
   useEffect(() => {
    loadType(type);
@@ -82,7 +83,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
               fontFamily: AppFonts.mainFontSemiBold,
               textAlignVertical: 'center',
               fontSize: 18 * rem,
-            }}>Hello World!</Text>
+            }}>{tittle ? tittle : ''}</Text>
           </View>
           <View
             style={{
@@ -99,7 +100,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
                   fontFamily: AppFonts.mainFont,
                   textAlign: 'center',
                   fontSize: 14 * rem
-                }}>{message? message: ''}</Text>
+                }}>{message ? message: ''}</Text>
             </View>
             <TouchableOpacity
               style={{
@@ -114,7 +115,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>{mainButton}</Text>
+              }}>{mainButton ? mainButton : 'Ok'}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -174,7 +175,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
               fontFamily: AppFonts.mainFontSemiBold,
               textAlignVertical: 'center',
               fontSize: 18 * rem,
-            }}>Hello World!</Text>
+            }}>{tittle ? tittle : ''}</Text>
           </View>
           <View
             style={{
@@ -206,7 +207,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>{mainButton}</Text>
+              }}>{mainButton ? mainButton : 'Ok'}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -220,7 +221,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>{secondButton}</Text>
+              }}>{secondButton ? secondButton : 'Cancelar'}</Text>
             </TouchableOpacity>
             </View>
           </View>
@@ -291,7 +292,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
               fontFamily: AppFonts.mainFontSemiBold,
               textAlignVertical: 'center',
               fontSize: 18 * rem,
-            }}>Hello World!</Text>
+            }}>{tittle ? tittle : 'Alerta!'}</Text>
           </View>
           <View
             style={{
@@ -323,7 +324,7 @@ const PetsModal: React.FC<PetsButton> = ({tittle, visible, type, message, mainBu
                 color: '#fff',
                 fontFamily: AppFonts.mainFont,
                 textAlign: 'center', fontSize: 14 * rem
-              }}>fechar</Text>
+              }}>{mainButton ? mainButton : 'Ok'}</Text>
             </TouchableOpacity>
           </View>
         </View>

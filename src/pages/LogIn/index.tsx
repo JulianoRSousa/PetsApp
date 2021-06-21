@@ -34,13 +34,18 @@ const SignIn: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [errorState, setErrorState] = useState(false)
+  
 
 
 
   async function handleSignIn() {
     navigation.reset;
-    await signIn(email, pass)
-
+    const re = await signIn(email, pass)
+    if ((re != null && String(re).includes('Request failed with status code 401'))) {
+      setErrorState(true);
+      console.log('devia exibir o modal')
+    }
   }
 
 
@@ -49,7 +54,16 @@ const SignIn: React.FC = () => {
       <ImageBackground source={require('../../assets/images/backgroundImage.png')}
         resizeMode="stretch"
         style={{ flex: 1, justifyContent: "center" }}>
-          <PetsModal  />
+        {errorState ?
+          <PetsModal
+            visible={true}
+            mainButton={'Tentar novamente'}
+            type={'OneButton'}
+            message={'usuário ou senha invalida'}
+            tittle={'Falha!'}
+            onPressOne={() => setErrorState(false)}
+          /> : <></>}
+
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <StatusBar backgroundColor={AppColors.transparent}
             translucent={true} />
@@ -88,7 +102,7 @@ const SignIn: React.FC = () => {
               tittle='entrar'
               isLoading={loading}
               onPress={() => handleSignIn()} />
-            
+
             <View
               style={{
                 elevation: 3 * rem,
