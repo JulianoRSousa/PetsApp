@@ -16,7 +16,10 @@ import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
 import { useNavigation } from '@react-navigation/native';
 import * as AppColors from '../../assets/strings/Colors';
+import * as AppStrings from '../../assets/strings/Strings';
 import style from '../LogIn/styles';
+import Lottie from 'lottie-react-native';
+
 
 
 
@@ -27,7 +30,7 @@ const SignIn: React.FC = () => {
   NavigationBar.setColor(AppColors.base)
 
   const navigation = useNavigation();
-  const { signIn } = useAuth();
+  const { signIn, loading } = useAuth();
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -37,6 +40,7 @@ const SignIn: React.FC = () => {
   async function handleSignIn() {
     navigation.reset;
     await signIn(email, pass)
+
   }
 
 
@@ -49,7 +53,7 @@ const SignIn: React.FC = () => {
           <StatusBar backgroundColor={AppColors.transparent}
             translucent={true} />
           <Text allowFontScaling={true}
-            style={style.textLogo}>pets</Text>
+            style={style.textLogo}>{AppStrings.appName}</Text>
 
           <View
             style={{
@@ -81,7 +85,9 @@ const SignIn: React.FC = () => {
               marginBottom={10 * rem}
               fontSize={18 * rem}
               tittle='entrar'
+              isLoading={loading}
               onPress={() => handleSignIn()} />
+            
             <View
               style={{
                 elevation: 3 * rem,

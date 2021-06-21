@@ -48,17 +48,19 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   async function signIn(email, pass) {
+    setLoading(true)
     try {
       const response = await auth.signIn(email, pass);
-    setUser(response.user);
+      setUser(response.user);
 
-    api.defaults.headers.Authorization = `Baerer ${response.token}`;
+      api.defaults.headers.Authorization = `Baerer ${response.token}`;
 
-    await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-    await AsyncStorage.setItem('@RNAuth:token', response.token);
+      await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
+      await AsyncStorage.setItem('@RNAuth:token', response.token);
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   async function signOut() {
