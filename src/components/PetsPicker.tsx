@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import {
     View,
-    Text,
     Dimensions,
     KeyboardType,
 } from "react-native";
 import { Picker } from '@react-native-picker/picker';
-import * as AppColors from '../assets/Colors';
+import * as AppColors from '../assets/strings/Colors';
 
 
 

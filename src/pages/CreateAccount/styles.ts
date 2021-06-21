@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import * as AppColors from "../../assets/Colors";
+import * as AppColors from "../../assets/strings/Colors";
 import {StyleSheet, Dimensions} from "react-native";
 
 const height = Dimensions.get("window").height;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as AppColors from '../assets/Colors';
+import * as AppColors from '../assets/strings/Colors';
 
 
 import SignIn from '../pages/LogIn';

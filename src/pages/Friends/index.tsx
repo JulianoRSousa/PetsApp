@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, Button, TextInput, FlatList, Image, TouchableOpacity, } from "react-native";
+import { View, Text, TextInput, FlatList, Image, TouchableOpacity, } from "react-native";
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import style from "../Friends/styles";
-import * as AppColors from '../../assets/Colors';
+import * as AppColors from '../../assets/strings/Colors';
 
 const Friends: React.FC = () => {
 

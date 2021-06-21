@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet, Dimensions } from "react-native";
-import * as AppColors from '../assets/Colors';
 
 
 interface Props {

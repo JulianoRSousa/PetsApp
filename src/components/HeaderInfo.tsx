@@ -1,6 +1,6 @@
 import React from "react";
 import {View, Text, StyleSheet, Dimensions, Image, StatusBar } from "react-native";
-import * as AppColors from '../assets/Colors';
+import * as AppColors from '../assets/strings/Colors';
 import { useAuth } from "../contexts/auth";
 
 

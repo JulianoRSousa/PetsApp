@@ -14,7 +14,7 @@ import {
 import { useAuth } from "../../contexts/auth";
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
-import * as AppColors from '../../assets/Colors';
+import * as AppColors from '../../assets/strings/Colors';
 import PetsButton from "../../components/PetsMainButton";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextInputMask } from 'react-native-masked-text';

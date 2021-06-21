@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import * as AppColors from '../assets/Colors';
+import * as AppColors from '../assets/strings/Colors';
 
 
 

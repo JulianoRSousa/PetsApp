@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions, Image, StatusBar, TouchableOpacity } from "react-native";
-import * as AppColors from '../assets/Colors';
+import React from "react";
+import { View, Text, StyleSheet, Dimensions, StatusBar, TouchableOpacity } from "react-native";
+import * as AppColors from '../assets/strings/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerActions } from '@react-navigation/native';
 

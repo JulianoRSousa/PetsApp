@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import * as AppColors from "../../assets/Colors";
+import * as AppColors from "../../assets/strings/Colors";
+import * as AppFonts from "../../assets/strings/Fonts";
 import {StyleSheet, Dimensions} from "react-native";
 
 const height = Dimensions.get("window").height;
@@ -18,7 +19,7 @@ export const PetsTextInput = styled.TextInput`
   background-color: ${AppColors.light};
   width: 97%;
   height: 84%;
-  font-family: "Quicksand-Regular";
+  font-family: ${AppFonts.mainFont};
   font-size: 20px;
   color: #f00;
 `;
@@ -38,7 +39,7 @@ export const PetsTextInputMinor = styled.TextInput`
   width: 97%;
   height: 84%;
   font-size: 16 * rem;
-  font-family: "Quicksand-Regular";
+  font-family: ${AppFonts.mainFont};
   color: ${AppColors.darkLightfont};
   border-radius: 10rem;
 `;
@@ -62,7 +63,7 @@ const style = StyleSheet.create({
     marginVertical: 5 * rem,
     alignSelf: "center",
     backgroundColor: "#F9A862",
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: 30 * rem,
@@ -72,7 +73,7 @@ const style = StyleSheet.create({
     fontWeight: "100",
     marginVertical: 7 * rem,
     fontSize: 20 * rem,
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     color: AppColors.darkFont,
   },
   viewSearchBar: {
@@ -85,7 +86,7 @@ const style = StyleSheet.create({
     elevation: 6,
   },
   textInputSearchBar: {
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     paddingHorizontal: 25 * rem,
     fontSize: 16 * rem,
     width: "90%",
@@ -113,18 +114,18 @@ const style = StyleSheet.create({
   textH4white: {
     marginVertical: 7 * rem,
     fontSize: 20 * rem,
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     color: AppColors.lightFont,
     elevation: 8,
   },
   textH5black: {
     fontSize: 10 * rem,
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     color: AppColors.darkFont,
   },
   textH3: {
     fontSize: 14 * rem,
-    fontFamily: "Quicksand-Regular",
+    fontFamily: AppFonts.mainFont,
     color: AppColors.lightFont,
   },
   imageNotFound: {
@@ -153,7 +154,7 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
   textLogo: {
-    fontFamily: "SomethingRegular",
+    fontFamily: AppFonts.secondFont,
     color: AppColors.light,
     fontSize: 168 * rem,
   },
@@ -163,7 +164,7 @@ const style = StyleSheet.create({
     backgroundColor: AppColors.light,
     fontSize: 16 * rem,
     paddingHorizontal: 10 * rem,
-    fontFamily: "Quicksand-Light",
+    fontFamily: AppFonts.mainFont,
     color: AppColors.darkLightfont,
     borderRadius: 10 * rem,
   },

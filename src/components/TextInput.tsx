@@ -1,16 +1,12 @@
-import React, { LegacyRef, MutableRefObject, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
+import React from "react";
 import {
     View,
     Text,
     TextInput,
     Dimensions,
     KeyboardType,
-    ViewProps,
-    Button,
-    ButtonProps,
-    TextInputProps,
 } from "react-native";
-import * as AppColors from '../assets/Colors';
+import * as AppColors from '../assets/strings/Colors';
 
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Text, } from "react-native";
-import * as AppColors from '../assets/Colors';
-import {useNavigation, useNavigationState} from '@react-navigation/native';
+import * as AppColors from '../assets/strings/Colors';
+import { useNavigationState } from '@react-navigation/native';
 
 
 

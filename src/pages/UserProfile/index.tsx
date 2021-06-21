@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, StatusBar } from "react-native";
-import * as AppColors from '../../assets/Colors';
-import Routes from "../../routes";
+import * as AppColors from '../../assets/strings/Colors';
 import api from "../../services/api";
-import { useNavigation } from '@react-navigation/native';
 import PetsHeader from "../../components/PetsHeader";
 
 

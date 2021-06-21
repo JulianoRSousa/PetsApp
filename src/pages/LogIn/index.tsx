@@ -15,7 +15,7 @@ import PetMainButton from '../../components/PetsMainButton';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar-color';
 import { useNavigation } from '@react-navigation/native';
-import * as AppColors from '../../assets/Colors';
+import * as AppColors from '../../assets/strings/Colors';
 import style from '../LogIn/styles';
 
 

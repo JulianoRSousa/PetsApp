@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { View, StatusBar, Text, Dimensions, KeyboardAvoidingView, Platform } from "react-native";
-import * as AppColors from '../../assets/Colors';
+import React from "react";
 
 const Carousel3: React.FC = () => {
   return (
-    <View></View>
+    <>
+    </>
   );
 };
 export default Carousel3;
