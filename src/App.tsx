@@ -7,6 +7,7 @@ import codePush from 'react-native-code-push';
 import Analytics from 'appcenter-analytics';
 
 import { AuthProvider } from "./contexts/auth";
+import { ModalProvider } from "./contexts/modal";
 import Routes from "./routes";
 
 const App: React.FC = () => {
@@ -50,9 +51,11 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <Routes />
-      </AuthProvider>
+      <ModalProvider>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </ModalProvider>
     </NavigationContainer>
   );
 };

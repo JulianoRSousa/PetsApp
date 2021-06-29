@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import React, { useState } from 'react';
 import {
   ImageBackground,
@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import PetsTextInput from '../../components/PetsTextInput';
 import { useAuth } from "../../contexts/auth";
@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as AppColors from '../../assets/strings/Colors';
 import * as AppStrings from '../../assets/strings/Strings';
 import style from '../LogIn/styles';
+import { useModal } from '../../contexts/modal';
 import PetsModal from '../../components/PetsModal';
 
 
@@ -26,6 +27,7 @@ import PetsModal from '../../components/PetsModal';
 const SignIn: React.FC = () => {
 
   const rem = (Dimensions.get('window').width) / 380;
+  const modal = useModal();
 
   NavigationBar.setColor(AppColors.base)
 
@@ -34,17 +36,19 @@ const SignIn: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  const [errorState, setErrorState] = useState(false)
-  
 
-
+  function onPressOne() {
+    console.log('função um')
+  }
+  function onPressTwo() {
+    console.log('função dois')
+  }
 
   async function handleSignIn() {
     navigation.reset;
     const re = await signIn(email, pass)
     if ((re != null && String(re).includes('Request failed with status code 401'))) {
-      setErrorState(true);
-      console.log('devia exibir o modal')
+      modal.ShowModal(false, 'Falha na autenticação', 'Usuário ou senha invalidos', 'Tentar novamente', '', () => onPressOne)
     }
   }
 
@@ -54,16 +58,7 @@ const SignIn: React.FC = () => {
       <ImageBackground source={require('../../assets/images/backgroundImage.png')}
         resizeMode="stretch"
         style={{ flex: 1, justifyContent: "center" }}>
-        {errorState ?
-          <PetsModal
-            visible={true}
-            mainButton={'Tentar novamente'}
-            type={'OneButton'}
-            message={'usuário ou senha invalida'}
-            tittle={'Falha!'}
-            onPressOne={() => setErrorState(false)}
-          /> : <></>}
-
+        <PetsModal />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <StatusBar backgroundColor={AppColors.transparent}
             translucent={true} />

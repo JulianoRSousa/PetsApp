@@ -21,6 +21,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import style, { PetsInputTextViewMinor } from "./styles";
 import signUp from "../../controllers/userController";
 import Geolocation from '@react-native-community/geolocation';
+import PetsModal from '../../components/PetsModal';
 
 
 
@@ -39,6 +40,10 @@ const CreateAccount: React.FC = () => {
   const [longitude, setLongitude] = useState('-55,5095');
   const [termsCheckBox, setTermsCheckBox] = useState(false)
   const [watchID, setWatchID] = useState(0);
+  const [modalState, setModalState] = useState(false);
+  const [modalTittle, setModalTittle] = useState('');
+  const [modalMessage, setModalMessage] = useState('');
+  const [modalType, setModalType] = useState<'OneButton' | 'TwoButtons'>("OneButton");
 
 
 
@@ -99,7 +104,9 @@ const CreateAccount: React.FC = () => {
     if (pass == repeatPass) {
       if (String(pass).length > 5) {
         if (!termsCheckBox) {
-          Alert.alert('Termos e condições', 'Para criar uma conta é necessario aceitar os termos e condições')
+          setModalTittle('Termos e condições');
+          setModalMessage('Para criar uma conta é necessario aceitar os termos e condições');
+          setModalState(true);
         } else {
           try {
             await callLocation()
@@ -121,7 +128,9 @@ const CreateAccount: React.FC = () => {
           }
         }
       } else {
-        Alert.alert('Senha muito curta', 'Informe uma senha com pelo menos 6 digitos')
+        setModalMessage('Informe uma senha com pelo menos 6 digitos');
+        setModalTittle('Senha muito curta');
+        setModalState(true);
       }
     } else {
       Alert.alert('Senha não confere', 'Repita a senha corretamente')
@@ -137,6 +146,7 @@ const CreateAccount: React.FC = () => {
         source={require('../../assets/images/backgroundImage.png')}
         resizeMode="stretch"
         style={style.backgroundImage}>
+        <PetsModal/>
         <StatusBar backgroundColor={AppColors.transparent} translucent={true} />
         <View style={{ alignItems: 'center', justifyContent: 'center' }} >
           <Text style={style.textLogo}>pets</Text>
