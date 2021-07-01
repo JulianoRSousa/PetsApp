@@ -13,7 +13,7 @@ const PetsModal: React.FC = ({ children }) => {
   useEffect(() => {
   }, [modal.isVisible])
   if (modal.isVisible) {
-    if (!modal.twoButtons) {
+    if (modal.type == 'OneButton') {
       return (
         <Modal
           animationType="fade"
@@ -41,10 +41,9 @@ const PetsModal: React.FC = ({ children }) => {
             }}>
             <View
               style={{
-                width: "75%",
+                minWidth: "75%",
                 backgroundColor: "#fffffff1",
                 minHeight: 170 * rem,
-                maxHeight: 200 * rem,
                 borderRadius: 30 * rem,
                 alignItems: "center",
                 elevation: 8,
@@ -90,14 +89,15 @@ const PetsModal: React.FC = ({ children }) => {
                 </View>
                 <TouchableOpacity
                   style={{
-                    alignSelf: "center",
                     borderRadius: 10 * rem,
-                    height: "35%",
-                    width: "90%",
+                    minHeight: "15%",
+                    minWidth: '70%',
+                    maxWidth: '95%',
                     backgroundColor: "#ff843ddd",
                     justifyContent: "center",
+                    alignSelf: 'center'
                   }}
-                  onPress={() => { modal.handlewActionOne(), modal.CloseModal()}}>
+                  onPress={() => {modal.handlewActionOne(), modal.CloseModal()}}>
                   <Text
                     style={{
                       color: "#fff",
@@ -115,13 +115,14 @@ const PetsModal: React.FC = ({ children }) => {
       );
     } else {
       return (
+
         <Modal
           animationType="fade"
           transparent={true}
           visible={modal.isVisible}
+          statusBarTranslucent={true}
           onRequestClose={() => {
           }}>
-          <StatusBar hidden={true} />
           <BlurView
             reducedTransparencyFallbackColor="gray"
             blurType="light"
@@ -134,6 +135,7 @@ const PetsModal: React.FC = ({ children }) => {
               right: 0,
             }}
           />
+          <StatusBar hidden={true} backgroundColor={AppColors.base} />
           <View
             style={{
               height: "100%",

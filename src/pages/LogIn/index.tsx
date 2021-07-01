@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
     navigation.reset;
     const re = await signIn(email, pass)
     if ((re != null && String(re).includes('Request failed with status code 401'))) {
-      modal.ShowModal(false, 'Falha na autenticação', 'Usuário ou senha invalidos', 'Tentar novamente', '', () => onPressOne)
+      modal.ShowModal('OneButton', 'Falha na autenticação', 'Usuário ou senha invalidos', 'Tentar novamente', '', () => onPressOne)
     }
   }
 
@@ -72,11 +72,11 @@ const SignIn: React.FC = () => {
               height: '60%'
             }}>
             <PetsTextInput
-              marginVertical={10}
+              marginVertical={10*rem}
               autoCompleteType='off'
               autoCapitalize='none'
               keyboardType={'email-address'}
-              placeholder={' email'}
+              placeholder={'email'}
               fontSize={24 * rem}
               value={email}
               onChangeText={setEmail} />
@@ -84,8 +84,7 @@ const SignIn: React.FC = () => {
               marginVertical={10}
               autoCompleteType='off'
               autoCapitalize='none'
-              placeholder={' senha'}
-              fontWeight={'200'}
+              placeholder={'senha'}
               secureTextEntry={true}
               fontSize={24 * rem}
               value={pass}

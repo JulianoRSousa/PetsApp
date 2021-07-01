@@ -10,6 +10,8 @@ import UserProfile from '../pages/UserProfile';
 import { createStackNavigator } from '@react-navigation/stack';
 import PetsHeader from '../components/PetsHeader';
 import PetsDrawerContent from '../components/PetsDrawerContent';
+import WorkList from '../pages/CheckList/CheckList';
+
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,7 +30,7 @@ const TabRoutes: React.FC = () => (
 const FriendsRoutes: React.FC = () => (
   <Stack.Navigator>
     <Stack.Screen name="Friends" component={Friends} options={{ header: () => <PetsHeader /> }} />
-    <Stack.Screen name="UserProfile" component={UserProfile} options={{headerShown:false}}/>
+    <Stack.Screen name="UserProfile" component={UserProfile} options={{ headerShown: false }} />
   </Stack.Navigator>
 );
 
@@ -39,6 +41,7 @@ const AppRoutes: React.FC = () => (
     drawerContent={(props) => <PetsDrawerContent {...props} />}
     screenOptions={{ headerStyle: { backgroundColor: '#ff8637', } }}>
     <Stack.Screen name="AppRoutes" component={TabRoutes} />
+    <Stack.Screen name="CheckList" component={WorkList} options={{ headerShown: true, header: () => <PetsHeader /> }} />
   </Drawer.Navigator>
 );
 export default AppRoutes;

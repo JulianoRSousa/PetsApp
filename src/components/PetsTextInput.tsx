@@ -33,16 +33,44 @@ interface CustomInput {
     margin?: number;
     marginHorizontal?: number;
     marginVertical?: number;
-    fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'bold' | 'normal' 
+    fontWeight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | 'bold' | 'normal'
     autoCapitalize?: 'none' | 'characters' | 'words' | 'sentences' | undefined
     autoCompleteType?: "cc-csc" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-number" | "email" | "name" | "password" | "postal-code" | "street-address" | "tel" | "username" | "off" | undefined
 }
 
-const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, marginHorizontal, margin, style, backgroundColor, textColor ,fontSize, width, height, onChangeText, placeholder, placeholderTextColor,
-    editable, selectionColor, onFocus, onBlur, underlineColorAndroid, multiline, numberOfLines, value, onSubmitEditing,
-    secureTextEntry, keyboardType, defaultValue, autoCompleteType, autoCapitalize }) => {
+const PetsTextInput: React.FC<CustomInput> = (
+    {
+        fontWeight,
+        marginVertical,
+        marginHorizontal,
+        margin,
+        style,
+        backgroundColor,
+        textColor,
+        fontSize,
+        width,
+        height,
+        onChangeText,
+        placeholder,
+        placeholderTextColor,
+        editable,
+        selectionColor,
+        onFocus,
+        onBlur,
+        underlineColorAndroid,
+        multiline,
+        numberOfLines,
+        value,
+        onSubmitEditing,
+        secureTextEntry,
+        keyboardType,
+        defaultValue,
+        autoCompleteType,
+        autoCapitalize
+    }
+) => {
 
-  
+
 
     const widthScreen = Dimensions.get("window").width;
     const heightScreen = Dimensions.get("window").height;
@@ -51,15 +79,15 @@ const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, margi
         <View
             style={{
                 margin: margin ? margin : 0,
-                marginHorizontal : marginHorizontal ? marginHorizontal : 0,
+                marginHorizontal: marginHorizontal ? marginHorizontal : 0,
                 marginVertical: marginVertical ? marginVertical : 0,
                 backgroundColor: backgroundColor ? backgroundColor : '#D5702E',
-                width: width ? (widthScreen * width ) : (widthScreen * 0.7463) ,
-                height: height ? ( heightScreen * height ) : (heightScreen * 0.0843),
+                width: width ? (widthScreen * width) : (widthScreen * 0.7463),
+                height: height ? (heightScreen * height) : (heightScreen * 0.0843),
                 elevation: 6,
-                alignContent:'center',
-                justifyContent:'center',
-                borderRadius:10,
+                alignContent: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
             }}
         >
             <TextInput
@@ -81,16 +109,16 @@ const PetsTextInput: React.FC<CustomInput> = ({fontWeight, marginVertical, margi
                 autoCompleteType={autoCompleteType}
                 autoCapitalize={autoCapitalize}
                 style={style ? style : {
-                    backgroundColor:'white',
+                    backgroundColor: 'white',
                     color: textColor ? textColor : '#808080',
-                    fontFamily:'Quicksand-Regular',
+                    fontFamily: 'Quicksand-Regular',
                     fontSize: fontSize ? fontSize : 25,
-                    height:'80%',
+                    height: '80%',
                     width: '95%',
-                    alignSelf:'center',
-                    elevation:5,
+                    alignSelf: 'center',
+                    elevation: 5,
                     fontWeight: fontWeight ? fontWeight : 'normal',
-                    borderRadius:10
+                    borderRadius: 10
                 }}
             ></TextInput>
         </View>

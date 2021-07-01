@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 
 import OneSignal from 'react-native-onesignal';
@@ -23,9 +23,10 @@ const App: React.FC = () => {
     OneSignal.setLogLevel(6, 0);
     OneSignal.setAppId("d43bf434-d3d0-4bcb-bf1e-bff69d6047e4");
 
-    OneSignal.promptForPushNotificationsWithUserResponse(response => {
+    if(Platform.OS == 'ios' ) { OneSignal.promptForPushNotificationsWithUserResponse(response => {
       console.log("Prompt response:", response);
-    });
+    })
+  }
     OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
       console.log("OneSignal: notification will show in foreground:", notificationReceivedEvent);
       let notification = notificationReceivedEvent.getNotification();
